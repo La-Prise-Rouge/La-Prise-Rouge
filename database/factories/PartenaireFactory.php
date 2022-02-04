@@ -14,7 +14,9 @@ class PartenaireFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'libelle'=> $this->faker->text(100),
+            'lien'=> $this->faker->text(100),
+            'description'=> $this->faker->text(100)
         ];
     }
 }
