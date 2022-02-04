@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Partenaire;
 use Illuminate\Database\Seeder;
 
 class PartenaireSeeder extends Seeder
@@ -13,6 +14,6 @@ class PartenaireSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Partenaire::factory()->times(20)->create();
     }
 }
