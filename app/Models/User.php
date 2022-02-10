@@ -77,6 +77,6 @@ class User extends Authenticatable
      */
     public function Evenements()
     {
-        return $this->belongsToMany(Evenement::class)->withPivot('heure_passage');
+        return $this->belongsToMany(Evenement::class)->withPivot('est_passe');
     }
 }

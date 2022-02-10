@@ -14,7 +14,6 @@ class EvenementUser extends Migration
     public function up()
     {
         Schema::create('evenement_user', function (Blueprint $table) {
-            $table->date('heure_passage')->format('Y/m/d H:i');
             $table->tinyInteger('est_passe')->default(0);
             $table->foreignId('evenement_id')->constrained();
             $table->foreignId('user_id')->constrained();

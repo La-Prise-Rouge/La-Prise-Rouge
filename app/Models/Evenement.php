@@ -26,7 +26,7 @@ class Evenement extends Model
      */
     public function Users()
     {
-        return $this->belongsToMany(User::class)->withPivot('heure_passage');
+        return $this->belongsToMany(User::class)->withPivot('est_passe');
     }
 
     /**

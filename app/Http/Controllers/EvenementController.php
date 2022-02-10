@@ -13,9 +13,11 @@ class EvenementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Retourne la liste de tous les evenements
     public function index()
     {
-        //
+        $evenements = Evenement::paginate(10);
+        return view('liste-evenements')->with('evenements', $evenements);
     }
 
     /**
@@ -82,6 +84,9 @@ class EvenementController extends Controller
     public function destroy(Evenement $evenement)
     {
         Evenement::destroy($evenement);
-
+        return redirect()->route('Accueil');
     }
+
+    //retour à la page d'accueil
+    public function returnHome() {return view('Accueil');}
 }
