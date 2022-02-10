@@ -81,6 +81,7 @@ class EvenementController extends Controller
      */
     public function destroy(Evenement $evenement)
     {
-        //
+        Evenement::destroy($evenement);
+
     }
 }
