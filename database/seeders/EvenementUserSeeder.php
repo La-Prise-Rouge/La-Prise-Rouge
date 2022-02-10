@@ -26,14 +26,10 @@ class EvenementUserSeeder extends Seeder
                 $evenement = Evenement::inRandomOrder()->first();
                 //Si user est pas inscrit a l'evenement alors inscrire
                 if ($user->Evenements()->find($evenement->id) == null) {
-                    //generation d'un nombre aleatoire pour generer une date aléatoire
-                    $int = mt_rand(1062044444,1262055681);
-                    $random_date = date("Y-m-d H:i:s", $int);
                     //Affectation de l'evenement au user
                     $user->Evenements()->attach(
                         $evenement,
                         [
-                            'heure_passage' => $random_date,
                             'est_passe' => false
                         ]);
                 }

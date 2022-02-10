@@ -16,12 +16,13 @@ class CreateEvenementsTable extends Migration
         Schema::create('Evenements', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
-            $table->date('date_debut')->format('Y/m/d H:i');
-            $table->date('date_fin')->format('Y/m/d H:i');
-            $table->date('date_reunion_primo')->format('Y/m/d H:i');
+            $table->date('date_debut')->format('Y/m/d');
+            $table->date('date_fin')->format('Y/m/d');
+            $table->dateTime('date_reunion_primo')->format('Y/m/d h:mm');
+            $table->integer('duree_passage');
             $table->string('lieu');
-            $table->date('date_inscription')->format('Y/m/d H:i');
-            $table->date('date_fin_inscription')->format('Y/m/d H:i');
+            $table->date('date_inscription')->format('Y/m/d');
+            $table->date('date_fin_inscription')->format('Y/m/d');
             $table->timestamps();
         });
     }
