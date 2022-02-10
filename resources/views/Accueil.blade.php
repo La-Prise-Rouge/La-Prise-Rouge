@@ -1,5 +1,9 @@
 @extends('Template')
 
+@section('Titre')
+    La Prise Rouge: Don du Sang
+@endsection
+
 @section('Corps de la page')
 
     <main class="            
@@ -103,6 +107,14 @@
             </div>
         </section>
 
+        {{-- Section: Evenement en cours --}}
+        <section class="
+            flex flex-col
+            w-full
+            mx-1/8 mt-32">
+            
+        </section>
+
         {{-- Section: Carte API Google --}}
         <section class="
             flex flex-col
@@ -145,7 +157,6 @@
                     <ion-icon name="map"></ion-icon>
                         Trouvez vos centres
                     </a>
-
             </div>
         </section>
 
