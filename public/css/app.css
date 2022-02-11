@@ -1483,6 +1483,12 @@ select {
 .bg-opacity-90 {
   --tw-bg-opacity: 0.9;
 } 
+.bg-opacity-60 {
+  --tw-bg-opacity: 0.6;
+} 
+.bg-opacity-5 {
+  --tw-bg-opacity: 0.05;
+} 
 .bg-cover {
   background-size: cover;
 } 
@@ -1571,6 +1577,10 @@ select {
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+} 
+.px-1\/8 {
+  padding-left: 12%;
+  padding-right: 12%;
 } 
 .pt-6 {
   padding-top: 1.5rem;

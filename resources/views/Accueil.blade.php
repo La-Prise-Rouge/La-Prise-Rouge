@@ -1,4 +1,8 @@
-@extends('Template')
+@extends('template')
+
+@section('Titre')
+    La Prise Rouge: Don du Sang
+@endsection
 
 @section('Corps de la page')
 
@@ -103,6 +107,20 @@
             </div>
         </section>
 
+        {{-- Section: Evenement en cours --}}
+        <section class="
+            flex flex-col
+            w-full
+            mt-32">
+
+            <h2 class="absolute font-semibold z-10">leghoilqdfbuglkuwbfgluh</h2>
+            <img class="
+                relative"
+                src="{{ asset('storage/lycee.jpg') }}"
+                alt="">
+            
+        </section>
+
         {{-- Section: Carte API Google --}}
         <section class="
             flex flex-col
@@ -112,7 +130,7 @@
                 flex flex-col
                 items-center
                 rounded-lg
-                px-10 pb-5
+                px-1/8 pb-5
                 bg-red-600
                 shadow-xl shadow-red-400">
 
@@ -145,7 +163,6 @@
                     <ion-icon name="map"></ion-icon>
                         Trouvez vos centres
                     </a>
-
             </div>
         </section>
 
