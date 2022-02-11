@@ -17,7 +17,7 @@ class EvenementController extends Controller
     public function index()
     {
         $evenements = Evenement::paginate(10);
-        return view('liste-evenements')->with('evenements', $evenements);
+        return view('Evenements')->with('evenements', $evenements);
     }
 
     /**
@@ -27,7 +27,7 @@ class EvenementController extends Controller
      */
     public function create()
     {
-        //
+        return view('evenement.formAjoutEvenement');
     }
 
     /**
@@ -38,7 +38,18 @@ class EvenementController extends Controller
      */
     public function store(StoreEvenementRequest $request)
     {
-        //
+        $evenement= new Evenement();
+        $evenement->libelle=$request->get('libelle');
+        $evenement->date_debut=$request->get('date_debut');
+        $evenement->date_fin=$request->get('date_fin');
+        $evenement->date_reunion_primo=$request->get('date_reunion_primo');
+        $evenement->duree_passage=$request->get('duree_passage');
+        $evenement->lieu=$request->get('lieu');
+        $evenement->date_inscription=$request->get('date_inscription');
+        $evenement->date_fin_inscription=$request->get('date_fin_inscription');
+
+        $evenement->save();
+        return redirect()->back();
     }
 
     /**
@@ -47,9 +58,10 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function show(Evenement $evenement)
+    public function show(Evenement $id)
     {
-        //
+        $evenement = Evenement::find($id);
+        return view('Evenement')->with('evenement', $evenement);
     }
 
     /**
@@ -88,5 +100,30 @@ class EvenementController extends Controller
     }
 
     //retour à la page d'accueil
-    public function returnHome() {return view('Accueil');}
+    public function retourneAccueil()
+    {
+        return view('accueil');
+    }
+
+    //retour à la page des evenements
+    public function retourneEvenements()
+    {
+        $evenements = Evenement::all();
+        return view('evenements', compact('evenements'));
+    }
+
+    //retour à la page de l'evenement en cours
+    public function retourneEvenement($id)
+    {
+        $evenement = Evenement::find($id);
+        return view('evenement', compact('evenement'));
+    }
+
+    //retour à la page de l'evenement en cours
+    public function retourneEvenementEnCours()
+    {
+        $evenement = Evenement::all()->where('est_cloturer', '0')->first();
+        return view('evenement', compact('evenement'));
+    }
+
 }

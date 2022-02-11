@@ -23,6 +23,7 @@ class CreateEvenementsTable extends Migration
             $table->string('lieu');
             $table->date('date_inscription')->format('Y/m/d');
             $table->date('date_fin_inscription')->format('Y/m/d');
+            $table->tinyInteger('est_cloturer')->default(1);
             $table->timestamps();
         });
     }
