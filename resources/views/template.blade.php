@@ -11,6 +11,7 @@ class="w-full h-full">
 
         {{-- Style --}}
         <link href="{{ asset('css/app.css') }}" rel='stylesheet'>
+        <script src="{{asset('js/app.js')}}" language="javascript"></script>
 
         {{-- Lien à Ion-Icon --}}
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -37,12 +38,47 @@ class="w-full h-full">
             </div>
 
             {{-- Icone Utilisateur --}}
-            <a href="#" class="h-full min-w-fit bg-white hover:bg-red-600 hover:text-white transition-all">
-                <img src="{{ asset('storage/icone_utilisateur.png') }}" class="h-full p-3 invert-0 hover:invert">
-            </a>
+            @auth
+                <button id="buttonUser" class="h-full min-w-fit bg-white hover:bg-red-600 hover:text-white transition-all">
+                    <img src="{{ asset('storage/icone_utilisateur.png') }}" class="h-full p-3 invert-0 hover:invert">
+                </button>
+            @else
+                <a href="{{ route('login') }}" class="h-full min-w-fit bg-white hover:bg-red-600 hover:text-white transition-all">
+                    <img src="{{ asset('storage/icone_utilisateur.png') }}" class="h-full p-3 invert-0 hover:invert">
+                </a>
+            @endauth
 
         </header>
 
+
+        <div id="formUser" class="
+            absolute
+            {{-- hidden --}}
+            right-0
+            w-fit h-fit
+            rounded-lg
+            bg-white
+            shadow-2xl shadow-gray-600"  >
+            <div class="
+                flex flex-col
+                w-full
+                py-4
+                text-left">
+                @if (Auth::user()->admin == 1)
+
+                @elseif (Auth::user()->admin == 0)
+                    <a href="#" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Espace administrateur</a>
+                    <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des utilisateurs</a>
+                    <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des évenements</a>
+                @endif
+
+                <form action="{{ route('logout')}}" method="POST" >
+                    @csrf
+                    <input type="submit" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white" value="Déconnexion">
+                </form>
+
+            </div>
+        </div>
         {{-- Bouton de participation au Don --}}
         <a href="{{ route('EvenementEnCours') }}" class="
             fixed flex bottom-0 left-0
@@ -68,4 +104,5 @@ class="w-full h-full">
 
         </footer>
     </body>
+
 </html>

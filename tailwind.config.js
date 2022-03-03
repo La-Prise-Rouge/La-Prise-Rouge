@@ -8,13 +8,14 @@ module.exports = {
         './resources/views/**/*.blade.php',
     ],
 
-   
-  darkMode : false, 
-  theme: {     
+
+  darkMode : false,
+  theme: {
       extend: {
             margin: {
                 '1/8': '12%',
                 '1/4': '25%',
+                '1/3': '33%',
                 '1/2': '50%',
                 '3/4': '75%',
             },
@@ -43,18 +44,18 @@ module.exports = {
             },
             boxShadow: {
                 'inner-bottom': 'inset 0px -15px 10px -10px rgba(255,255,255,5)',
-            },            
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
-        }, 
-  },   
+        },
+  },
 
-  variants: { 
+  variants: {
 
-      extend: {}, 
+      extend: {},
 
-  }, 
+  },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 
