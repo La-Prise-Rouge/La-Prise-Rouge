@@ -25,7 +25,8 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        //Envoi sur le formulaire de création
+        return view('photo.formAjoutPhoto');
     }
 
     /**
@@ -36,7 +37,14 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-        //
+        $photo= new Photo();
+        $photo->titre=$request->get('titre');
+        $photo->url=$request->get('url');
+        $photo->description=$request->get('description');
+        $photo->evenement_id=$request->get('evenement_id');
+
+        $photo->save();
+        return redirect()->back();
     }
 
     /**
@@ -45,9 +53,11 @@ class PhotoController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(Photo $id)
     {
-        //
+        //Permet de visualiser un evenement
+        $photo = Photo::find($id);
+        return view('Accueil')->with('photo', $photo);
     }
 
     /**
@@ -68,9 +78,11 @@ class PhotoController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePhotoRequest $request, Photo $photo)
+    public function update(UpdatePhotoRequest $request, Photo $id)
     {
-        //
+        $photo = Photo::find($id);
+        //envoi sur le formulaire Update de photo
+        return view('photo.formUpdPhoto')->with('photo', $photo);
     }
 
     /**
@@ -81,6 +93,7 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        Photo::destroy($photo);
+        return redirect()->route('Accueil');
     }
 }

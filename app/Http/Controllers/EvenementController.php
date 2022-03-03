@@ -70,9 +70,10 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Evenement $evenement)
+    public function edit($id)
     {
-        //
+        $evenement = Evenement::find($id);
+        return view('evenement.form_upd_evenement', compact("evenement"));
     }
 
     /**
@@ -82,9 +83,8 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEvenementRequest $request, Evenement $evenement)
+    public function update(UpdateEvenementRequest $request, $id)
     {
-        //
     }
 
     /**
@@ -93,9 +93,9 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evenement $evenement)
+    public function destroy($id)
     {
-        Evenement::destroy($evenement);
+        Evenement::destroy($id);
         return redirect()->route('Accueil');
     }
 

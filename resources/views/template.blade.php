@@ -29,8 +29,8 @@ class="w-full h-full">
 
             {{-- Boutons de navigation --}}
             <div class="flex flex-row h-full align-middle justify-between">
-                <a {{(request()->routeIs('Accueil')) ? 'active' : ''}} href="{{ route('Accueil') }}" class="h-full min-w-fit  p-5 bg-white  hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">Accueil</a>
-                <a {{(request()->routeIs('Evenements')) ? 'active' : ''}} href="{{ route('Evenements') }}" class="h-full p-5 bg-white hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Evenements</a>
+                <a href="{{ route('Accueil') }}" class="h-full min-w-fit  p-5 bg-white  hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">Accueil</a>
+                <a href="{{ route('Evenements') }}" class="h-full p-5 bg-white hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Evenements</a>
                 <a href="#" class="h-full min-w-fit  p-5 bg-white  hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">Don du Sang</a>
                 <a href="#" class="h-full min-w-fit  p-5 bg-white hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">Don de Moelle</a>
                 <a href="#" class="h-full p-5 bg-white hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">FAQ</a>
