@@ -1,48 +1,46 @@
 @extends('template')
 
 @section('Titre')
-    La Prise Rouge: Don du Sang
+    La Prise Rouge | Don du Sang
 @endsection
 
 @section('Corps de la page')
 
     <main class="
-    flex flex-col
-    w-full h-fit">
+        flex flex-col
+        w-full h-fit">
 
         {{-- Présentation du site --}}
         <div class="
             flex flex-col top-0 left-0
-            py-60 pl-1/3
+            pb-60 pt-40 pl-5 
             bg-cover bg-no-repeat
-            shadow-inner-bottom"
+            shadow-inner-bottom
+            md:py-60 md:pl-1/3"
             style="background-image: url({{ asset('storage/prise-de-sang.jpg') }})">
             <h1 class="text-3xl font-bold text-red-600 text">La Prise Rouge</h1>
             <h2 class="text-xl font-semibold">Inscrivez-vous au Don du Sang du Lycée Pasteur Mont-Roland</h2>
         </div>
 
-        <section class="
-            flex flex-col
+        {{-- Informations sur le Don du Sang --}}
+        <section class="flex flex-col
             w-full
-            mt-32">
+            mt-6 md:mt-32">
 
-            {{-- Informations sur le Don du Sang --}}
-            <div class="
-                h-96
-                ml-5 mr-36
+            <div class="h-fit
                 flex flex-col
-                rounded-lg
+                rounded-none md:rounded-lg
                 shadow-2xl shadow-red-500
-                bg-cover"
+                bg-cover
+                md:ml-5 md:mr-36"
                 style="background-image: url({{ asset('storage/sang-background.jpg') }})">
 
                 {{-- Titre de la section --}}
-                <div class="
-                flex
-                items-center
-                h-10
-                ml-10
-                text-white text-xl font-semibold">
+                <div class="flex
+                    items-center
+                    h-10
+                    ml-10
+                  text-white text-xl font-semibold">
                     <h2>
                         Don de Sang
                     </h2>
@@ -51,16 +49,16 @@
                 {{-- Vignettes --}}
                 <div class="
                     flex flex-row flex-wrap
-                    w-full h-full
-                    px-4 pb-2
-                    vignettes_info">
+                    w-full h-1/2
+                    md:px-4 pb-2
+                    vignettes_info_md md:vignettes_info_full">
 
-                    <div class="rounded-tl-lg">1er fact</div>
-                    <div>2er fact</div>
-                    <div class="rounded-tr-lg"><p class="text-black">3er fact</p></div>
-                    <div class="rounded-bl-lg">4er fact</div>
-                    <div>5er fact</div>
-                    <div class="rounded-br-lg">6er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-tl-lg">1er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 ">2er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-tr-lg"><p class="text-black">3er fact</p></div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-bl-lg">4er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 ">5er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-br-lg">6er fact</div>
 
                 </div>
             </div>
@@ -70,39 +68,35 @@
         <section class="
             flex flex-col
             w-full
-            mt-32">
+            mt-6 md:mt-32" >
 
-            <div class="
+            <div class="h-fit
                 flex flex-col
-                w-auto h-96
-                ml-36 mt-10 mr-5
-                rounded-lg
+                rounded-none md:rounded-lg
+                shadow-2xl shadow-red-500
                 bg-cover
-                shadow-xl shadow-red-200"
-                style="background-image: url({{ asset('storage/moelle-background.jpg') }})">
+                md:ml-5 md:mr-36">
 
                 {{-- Titre de la section --}}
-                <div class="
-                    w-full h-10
-                    text-right text-white text-xl font-semibold">
-                    <h2 class="mr-10">
-                        Don de Moelle
-                    </h2>
-                </div>
+                <h2 class="w-full h-10
+                    text-white text-xl text-right font-semibold">
+                    Don de Moelle
+                </h2>
 
                 {{-- Vignettes --}}
                 <div class="
                     flex flex-row flex-wrap
-                    w-full h-full
-                    px-4 pb-2
-                    vignettes_info">
+                    w-full h-1/2
+                    md:px-4 pb-2
+                    vignettes_info_md md:vignettes_info_full">
 
-                    <div class="rounded-tl-lg">1er fact</div>
-                    <div>2er fact</div>
-                    <div class="rounded-tr-lg"><p class="text-black">3er fact</p></div>
-                    <div class="rounded-bl-lg">4er fact</div>
-                    <div>5er fact</div>
-                    <div class="rounded-br-lg">6er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-tl-lg">1er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 ">2er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-tr-lg"><p class="text-black">3er fact</p></div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-bl-lg">4er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 ">5er fact</div>
+                    <div class="w-1/2 md:w-1/3 py-8 md:rounded-br-lg">6er fact</div>
+
                 </div>
             </div>
         </section>
@@ -136,10 +130,10 @@
 
                 {{-- Titre de la section --}}
                 <div class="
-                flex
-                justify-center items-center
-                w-full h-10
-                text-white text-xl font-semibold">
+                    flex
+                    justify-center items-center
+                    w-full h-10
+                    text-white text-xl font-semibold">
                         Vous voulez nous trouver ?
                 </div>
 
@@ -151,8 +145,7 @@
                         transition-all"
                     loading="lazy"></iframe>
 
-                <a href="#" class="
-                    mt-5
+                <a href="#" class="mt-5
                     p-3 px-10
                     rounded-full
                     bg-white
