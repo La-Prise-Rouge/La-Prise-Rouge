@@ -24,17 +24,74 @@ class="w-full h-full">
         {{-- Menu supérieur --}}
         <header class="flex flex-row h-16 align-middle items-center justify-between bg-white">
 
-            {{-- Logo --}}
-            <img class="w-32 h-full bg-red-600"/>
+            {{-- Switch de navigation --}}
+            <button class="w-14 h-full 
+                p-2
+                bg-red-600
+                z-20 md:hidden" 
+                id="boutton_nav">
+                <ion-icon name="menu-outline" 
+                    class="flex 
+                        h-full w-full 
+                        text-sm text-white" 
+                    id="ouvre_nav"></ion-icon>
+                <ion-icon name="close-outline" 
+                    class="hidden h-full w-full 
+                        text-sm text-white" 
+                    id="ferme_nav">></ion-icon>
+            </button>
 
-
-            {{-- Boutons de navigation --}}
-            <div class="flex flex-row h-full align-middle justify-between">
-                <a href="{{ route('Accueil') }}" class="h-full min-w-fit  p-5 bg-white  hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">Accueil</a>
-                <a href="{{ route('Evenements') }}" class="h-full p-5 bg-white hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Evenements</a>
-                <a href="#" class="h-full min-w-fit  p-5 bg-white  hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">Don du Sang</a>
-                <a href="#" class="h-full min-w-fit  p-5 bg-white hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">Don de Moelle</a>
-                <a href="#" class="h-full p-5 bg-white hover:bg-red-600 hover:text-white hover:font-semibold hover:scale-x-105  transition-all">FAQ</a>
+            {{-- Menu de navigation --}}
+            <div class="absolute invisible
+                top-0 left-0
+                flex flex-col  
+                w-full h-full
+                items-center justify-between
+                bg-red-600
+                text-white font-semibold
+                z-10
+                md:static md:visible
+                md:flex-row
+                md:bg-transparent
+                md:text-black md:font-normal"
+                id="menu_nav">
+                <a {{(request()->routeIs('Accueil')) ? 'active' : ''}} 
+                    href="{{ route('Accueil') }}"
+                    class="flex 
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">Acceuil</a>
+                <a {{(request()->routeIs('Evenements')) ? 'active' : ''}} 
+                    href="{{ route('Evenements') }}" 
+                    class="flex 
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">Evenements</a>
+                <a href="#"
+                    class="flex 
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all" >Don du Sang</a>
+                <a href="#" 
+                    class="flex 
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">Don de Moelle</a>
+                <a href="#" 
+                    class="flex 
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">FAQ</a>
             </div>
 
             {{-- Icone Utilisateur --}}
@@ -50,35 +107,37 @@ class="w-full h-full">
 
         </header>
 
+        @auth
+            <div id="formUser" class="
+                absolute
+                hidden
+                right-0
+                w-fit h-fit
+                rounded-b-lg
+                bg-white
+                shadow-xl shadow-gray-600">
+                <div class="
+                    flex flex-col
+                    w-full
+                    py-4
+                    text-left">
+                    @if (Auth::user()->admin == 1)
 
-        <div id="formUser" class="
-            absolute
-            {{-- hidden --}}
-            right-0
-            w-fit h-fit
-            rounded-lg
-            bg-white
-            shadow-2xl shadow-gray-600"  >
-            <div class="
-                flex flex-col
-                w-full
-                py-4
-                text-left">
-                @if (Auth::user()->admin == 1)
+                    @elseif (Auth::user()->admin == 0)
+                        <a href="#" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Espace administrateur</a>
+                        <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des utilisateurs</a>
+                        <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des évenements</a>
+                    @endif
 
-                @elseif (Auth::user()->admin == 0)
-                    <a href="#" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Espace administrateur</a>
-                    <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des utilisateurs</a>
-                    <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des évenements</a>
-                @endif
+                    <form action="{{ route('logout')}}" method="POST" >
+                        @csrf
+                        <input type="submit" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white" value="Déconnexion">
+                    </form>
 
-                <form action="{{ route('logout')}}" method="POST" >
-                    @csrf
-                    <input type="submit" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white" value="Déconnexion">
-                </form>
-
+                </div>
             </div>
-        </div>
+        @endauth
+
         {{-- Bouton de participation au Don --}}
         <a href="{{ route('EvenementEnCours') }}" class="
             fixed flex bottom-0 left-0
@@ -87,7 +146,7 @@ class="w-full h-full">
             text-white
             bg-red-600 bg-opacity-90
             hover:w-1/4 hover:h-20 hover:font-semibold hover:bg-opacity-100
-            transition-all z-10">
+            transition-all">
 
             {{-- Texte du Bouton --}}
             <p>
