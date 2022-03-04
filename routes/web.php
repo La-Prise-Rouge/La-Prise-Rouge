@@ -42,25 +42,35 @@ Route::get('Evenements',
 //Authentification LiveWire
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+    })->name('dashboard');
 
 //Route vers le formulaire d'ajout d'evenement
 Route::get('creation-evenement',
     [EvenementController::class,'create']
     )->name('creation-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
+//Route du formulaire d'ajout d'evenement validé
+Route::get('validation-creation-evenement',
+    [EvenementController::class,'store']
+    )->name('validation-creation-evenement');   //->middleware('auth')->middleware('IsAdmin')
+
 //Route vers le formulaire de MAJ d'evenement
 Route::get('modification-evenement/{id}',
     [EvenementController::class,'edit']
     )->name('modification-evenement');   //->middleware('auth')
 
+//Route du formulaire de MAJ d'evenement validé
+Route::get('validation-modification-evenement/{id}',
+[EvenementController::class,'update']
+)->name('validation-modification-evenement');   //->middleware('auth')->middleware('IsAdmin')
+
 //Route vers le formulaire de MAJ d'evenement
-Route::get('suppression-evenement/{id}',
+Route::get('suppression-evenement',
     [EvenementController::class,'destroy']
     )->name('suppression-evenement');   //->middleware('auth')
 
 //Route vers le formulaire d'ajout photo
 Route::get('creation-photo',
-[PhotoController::class,'create']
-)->name('creation-photo');   //->middleware('auth')->middleware('IsAdmin')
+    [PhotoController::class,'create']
+    )->name('creation-photo');   //->middleware('auth')->middleware('IsAdmin')
 

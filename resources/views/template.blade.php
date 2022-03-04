@@ -25,26 +25,26 @@ class="w-full h-full">
         <header class="flex flex-row h-16 align-middle items-center justify-between bg-white">
 
             {{-- Switch de navigation --}}
-            <button class="w-14 h-full 
+            <button class="w-14 h-full
                 p-2
                 bg-red-600
-                z-20 md:hidden" 
+                z-20 md:hidden"
                 id="boutton_nav">
-                <ion-icon name="menu-outline" 
-                    class="flex 
-                        h-full w-full 
-                        text-sm text-white" 
+                <ion-icon name="menu-outline"
+                    class="flex
+                        h-full w-full
+                        text-sm text-white"
                     id="ouvre_nav"></ion-icon>
-                <ion-icon name="close-outline" 
-                    class="hidden h-full w-full 
-                        text-sm text-white" 
+                <ion-icon name="close-outline"
+                    class="hidden h-full w-full
+                        text-sm text-white"
                     id="ferme_nav">></ion-icon>
             </button>
 
             {{-- Menu de navigation --}}
             <div class="absolute invisible
                 top-0 left-0
-                flex flex-col  
+                flex flex-col
                 w-full h-full
                 items-center justify-between
                 bg-red-600
@@ -55,38 +55,38 @@ class="w-full h-full">
                 md:bg-transparent
                 md:text-black md:font-normal"
                 id="menu_nav">
-                <a {{(request()->routeIs('Accueil')) ? 'active' : ''}} 
+                <a {{(request()->routeIs('Accueil')) ? 'active' : ''}}
                     href="{{ route('Accueil') }}"
-                    class="flex 
+                    class="flex
                     w-full h-full
                     items-center justify-center
                     hover:bg-red-600
                     hover:text-white hover:font-semibold
-                    transition-all">Acceuil</a>
-                <a {{(request()->routeIs('Evenements')) ? 'active' : ''}} 
-                    href="{{ route('Evenements') }}" 
-                    class="flex 
+                    transition-all">Accueil</a>
+                <a {{(request()->routeIs('Evenements')) ? 'active' : ''}}
+                    href="{{ route('Evenements') }}"
+                    class="flex
                     w-full h-full
                     items-center justify-center
                     hover:bg-red-600
                     hover:text-white hover:font-semibold
                     transition-all">Evenements</a>
                 <a href="#"
-                    class="flex 
+                    class="flex
                     w-full h-full
                     items-center justify-center
                     hover:bg-red-600
                     hover:text-white hover:font-semibold
                     transition-all" >Don du Sang</a>
-                <a href="#" 
-                    class="flex 
+                <a href="#"
+                    class="flex
                     w-full h-full
                     items-center justify-center
                     hover:bg-red-600
                     hover:text-white hover:font-semibold
                     transition-all">Don de Moelle</a>
-                <a href="#" 
-                    class="flex 
+                <a href="#"
+                    class="flex
                     w-full h-full
                     items-center justify-center
                     hover:bg-red-600
