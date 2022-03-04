@@ -1,4 +1,4 @@
-@extends('Template')
+@extends('template')
 
 @section('Corps de la page')
 
@@ -8,6 +8,7 @@
 
     <div class="btnLow">
         <li><a href="{{route('creation-evenement')}}"><button type="button" class="btn btn-success">Ajouter Evenement</button></a></li>
+
     </div>
 
     <table class="table">
@@ -23,7 +24,9 @@
                 <tr>
                     <th scope="row">{{$evenement->id}}</th>
                     <td>{{$evenement->libelle}}</td>
-                    <td><li><a href="{{route('Evenement',[$evenement['id']], $evenement->id)}}"><button type="button" class="btn btn-info">Voir plus de détails</button></a></li></td>
+                    <td><li><a href="{{route('Evenement', $evenement->id)}}"><button type="button" class="btn btn-info">Voir plus de détails</button></a></li></td>
+                    <td><li><a href="{{route('modification-evenement', $evenement->id)}}"><button type="button" class="btn btn-success">Modifier Evenement</button></a></li></td>
+                    <td><li><a href="{{route('suppression-evenement', $evenement->id)}}"><button type="button" class="btn btn-success">Supprimer Evenement</button></a></li></td>
                 </tr>
             @endforeach
         </tbody>

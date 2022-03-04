@@ -112,7 +112,7 @@
                 relative"
                 src="{{ asset('storage/lycee.jpg') }}"
                 alt="">
-            
+
         </section>
 
         {{-- Section: Carte API Google --}}
