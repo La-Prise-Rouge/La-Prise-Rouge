@@ -83,8 +83,19 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEvenementRequest $request, $id)
+    public function update(UpdateEvenementRequest $request, $evenement)
     {
+        $evenement->libelle=$request->get('libelle');
+        $evenement->date_debut=$request->get('date_debut');
+        $evenement->date_fin=$request->get('date_fin');
+        $evenement->date_reunion_primo=$request->get('date_reunion_primo');
+        $evenement->duree_passage=$request->get('duree_passage');
+        $evenement->lieu=$request->get('lieu');
+        $evenement->date_inscription=$request->get('date_inscription');
+        $evenement->date_fin_inscription=$request->get('date_fin_inscription');
+
+        $evenement->save();
+        return redirect()->back();
     }
 
     /**
@@ -102,7 +113,16 @@ class EvenementController extends Controller
     //retour à la page d'accueil
     public function retourneAccueil()
     {
-        return view('accueil');
+        $event = Evenement::all()->where('est_cloturer', '0')->first();
+        if ($event == "") {
+            $event = Evenement::all()->OrderBy('date_debut', 'DESC')->first();
+            $date = now();
+            if (Evenement::all()->OrderBy('date_debut', 'DESC')->where('date_debut', '<', $date)->first()) {
+                $event = "Aucun Évenement à venir";
+            }
+        }
+        $evenement = $event;
+        return view('accueil', compact('evenement'));
     }
 
     //retour à la page des evenements
