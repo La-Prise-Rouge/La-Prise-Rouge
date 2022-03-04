@@ -62,12 +62,12 @@ Route::get('modification-evenement/{id}',
 //Route du formulaire de MAJ d'evenement validé
 Route::get('validation-modification-evenement/{id}',
 [EvenementController::class,'update']
-)->name('validation-modification-evenement/{id}');   //->middleware('auth')->middleware('IsAdmin')
+)->name('validation-modification-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
 //Route vers le formulaire de MAJ d'evenement
-Route::get('suppression-evenement/{id}',
+Route::get('suppression-evenement',
     [EvenementController::class,'destroy']
-    )->name('suppression-evenement/{id}');   //->middleware('auth')
+    )->name('suppression-evenement');   //->middleware('auth')
 
 //Route vers le formulaire d'ajout photo
 Route::get('creation-photo',

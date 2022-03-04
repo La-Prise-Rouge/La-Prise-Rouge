@@ -115,9 +115,9 @@ class EvenementController extends Controller
     {
         $event = Evenement::all()->where('est_cloturer', '0')->first();
         if ($event == "") {
-            $event = Evenement::all()->OrderBy('date_debut', 'DESC')->first();
+            $event = Evenement::all()->first(); //->OrderBy('date_debut', 'DESC')
             $date = now();
-            if (Evenement::all()->OrderBy('date_debut', 'DESC')->where('date_debut', '<', $date)->first()) {
+            if (Evenement::all()->where('date_debut', '<', $date)->first()) { //->OrderBy('date_debut', 'DESC')
                 $event = "Aucun Évenement à venir";
             }
         }
