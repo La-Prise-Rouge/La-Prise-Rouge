@@ -102,17 +102,22 @@
         </section>
 
         {{-- Section: Evenement en cours --}}
-        <section class="
+        <section class="h-fit
             flex flex-col
-            w-full
-            mt-32">
+            rounded-none md:rounded-lg
+            bg-cover" 
+            style="background-image: url({{ asset('storage/lycee.jpg') }})">
 
-            <h2 class="absolute font-semibold z-10">leghoilqdfbuglkuwbfgluh</h2>
-            <img class="
-                relative"
-                src="{{ asset('storage/lycee.jpg') }}"
-                alt="">
+            <h2 class="w-full h-10
+                text-white text-xl text-center font-semibold 
+                z-10">
+                Prochaine Collecte de Sang 
+            </h2>
 
+            <div class="flex flex-col
+                shadow-inner shadow-gray-300">
+                Libelle de l'evenement
+            </div>
         </section>
 
         {{-- Section: Carte API Google --}}
