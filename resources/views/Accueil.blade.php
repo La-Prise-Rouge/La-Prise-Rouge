@@ -30,21 +30,15 @@
             <div class="h-fit
                 flex flex-col
                 rounded-none md:rounded-lg
-                shadow-2xl shadow-red-500
+                shadow-lg shadow-red-200
                 bg-cover
                 md:ml-5 md:mr-36"
                 style="background-image: url({{ asset('storage/sang-background.jpg') }})">
 
                 {{-- Titre de la section --}}
-                <div class="flex
-                    items-center
-                    h-10
-                    ml-10
-                  text-white text-xl font-semibold">
-                    <h2>
-                        Don de Sang
-                    </h2>
-                </div>
+                <h2 class="text-center text-white text-xl font-semibold">
+                    Don de Sang
+                </h2>
 
                 {{-- Vignettes --}}
                 <div class="
@@ -73,21 +67,20 @@
             <div class="h-fit
                 flex flex-col
                 rounded-none md:rounded-lg
-                shadow-2xl shadow-red-500
+                shadow-lg shadow-red-200
                 bg-cover
                 md:ml-5 md:mr-36">
 
                 {{-- Titre de la section --}}
-                <h2 class="w-full h-10
-                    text-white text-xl text-right font-semibold">
-                    Don de Moelle
+                <h2 class="text-center text-xl font-semibold">
+                    Don de Moelle osseuse
                 </h2>
 
                 {{-- Vignettes --}}
                 <div class="
                     flex flex-row flex-wrap
                     w-full h-1/2
-                    md:px-4 pb-2
+                    md:px-4
                     vignettes_info_md md:vignettes_info_full">
 
                     <div class="w-1/2 md:w-1/3 py-8 md:rounded-tl-lg">1er fact</div>
@@ -102,68 +95,125 @@
         </section>
 
         {{-- Section: Evenement en cours --}}
-        <section class="h-fit
-            flex flex-col
+        <section class="flex flex-col
+            w-full h-fit
+            items-center
+            mt-5
             rounded-none md:rounded-lg
-            bg-cover" 
+            bg-cover
+            text-white" 
             style="background-image: url({{ asset('storage/lycee.jpg') }})">
 
-            <h2 class="w-full h-10
-                text-white text-xl text-center font-semibold 
-                z-10">
-                Prochaine Collecte de Sang 
-            </h2>
+            {{-- Si un évenement est en cours --}}
+            @if (isset($evenement))
+                
+                {{-- Titre de la section --}}
+                <h2 class="w-full h-10
+                    text-xl text-center font-semibold 
+                    z-10">
+                    Prochain evenement
+                </h2>
 
-            <div class="flex flex-col
-                shadow-inner shadow-gray-300">
-                Libelle de l'evenement
-            </div>
+                {{-- Informations de l'évenement --}}
+                <div class="flex flex-col
+                    w-3/4
+                    shadow-inner-center shadow-gray-300 p-2">
+                    
+                    {{-- Titre de l'evenement --}}
+                    <p class="text-center font-semibold">{{ $evenement->libelle }}</p>
+
+                    {{-- Date d'inscription à l'évenement --}}
+                    <div class="flex justify-between">
+                        <p>Date d'inscription</p>
+                        <p>{{ $evenement->date_inscription }}</p>
+                    </div>
+
+                    {{-- Date de début de l'évenement --}}
+                    <div class="flex justify-between">
+                        <p>Date de l'évenement</p>
+                        <p>{{ $evenement->date_debut }}</p>
+                    </div>
+                
+                </div>
+
+                {{-- Boutons de redirection et d'inscription --}}
+                <div class="flex flex-row w-full justify-between p-4">
+
+                    {{-- Redirection à la page de l'évenement --}}
+                    <a href="#" 
+                        class="p-2
+                        border-2 border-white 
+                        shadow-inner-center shadow-white">
+                        Plus d'Informations
+                    </a>
+
+                    {{-- Redirection à la page d'inscription --}}
+                    <a href="#" 
+                        class="p-2
+                        border-2 border-white 
+                        shadow-inner-center shadow-white">
+                        Inscrivez-vous
+                    </a>
+
+                </div>
+                
+            {{-- S'il n'y a pas d'évenements en cours ou prévus --}}
+            @else
+                {{-- *A COMPLETER* --}}
+            @endif
+
         </section>
 
         {{-- Section: Carte API Google --}}
-        <section class="
-            flex flex-col
-            mx-1/8 mt-32">
+        <section class="mt-8">
 
             <div class="
                 flex flex-col
-                items-center
-                rounded-lg
-                px-1/8 pb-5
+                px-1/12 py-2 pb-5
                 bg-red-600
-                shadow-xl shadow-red-400">
+                shadow-lg shadow-red-200">
 
                 {{-- Titre de la section --}}
-                <div class="
-                    flex
-                    justify-center items-center
-                    w-full h-10
-                    text-white text-xl font-semibold">
-                        Vous voulez nous trouver ?
-                </div>
-
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2716.253340537249!2d5.494079004423624!3d47.09410399513063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478d4c97319a022b%3A0x10455424f077465e!2sLycee%20Pasteur%20Mont%20Roland!5e0!3m2!1sen!2sfr!4v1644484442678!5m2!1sen!2sfr"
+                <h2 class="w-full h-10
+                    text-xl text-white text-center font-semibold 
+                    z-10">
+                    Où nous trouver ?
+                </h2>
+                
+                {{-- Vue de la Map --}}
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1358.1321977904079!2d5.4887812203658415!3d47.09388725506285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478d4cbd41621bd5%3A0xa60717d72858f694!2sLyc%C3%A9e%20Pasteur%20Mont%20Roland%20-%20Site%20Mont%20Roland!5e0!3m2!1sen!2sfr!4v1646497280522!5m2!1sen!2sfr"
                     class="
                         w-full h-72
-                        rounded-lg
+                        rounded-md
                         shadow-md shadow-red-400
                         transition-all"
                     loading="lazy"></iframe>
 
+                {{-- Redirection à la localisation des centres de dons --}}
                 <a href="#" class="mt-5
                     p-3 px-10
                     rounded-full
                     bg-white
                     shadow-md  shadow-red-500 font-semibold
-                    uppercase
+                    text-center uppercase 
                     hover:bg-gray-500 hover:shadow-2xl hover:text-white
                     transition-all">
-                    <ion-icon name="map"></ion-icon>
+                        <ion-icon name="map"></ion-icon>
                         Trouvez vos centres
-                    </a>
+                </a>
             </div>
         </section>
 
+        {{-- Section: Partenaires --}}
+        <section class="mt-8">
+
+            <div class="
+                flex flex-col
+                px-1/12 py-2 pb-5
+                bg-red-600
+                shadow-lg shadow-red-200">
+            </div>
+        </section>
     </main>
 
 @endsection

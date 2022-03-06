@@ -21,6 +21,7 @@ module.exports = {
             },
             padding: {
                 '0': '0',
+                '1/12': '8%',
                 '1/8': '12%',
                 '1/4': '25%',
                 '1/3': '33%',
@@ -54,6 +55,7 @@ module.exports = {
             },
             boxShadow: {
                 'inner-bottom': 'inset 0px -15px 10px -10px rgba(255,255,255,5)',
+                'inner-center': 'inset 0px 0px 5px 2px rgba(255,255,255,5)',
             },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],

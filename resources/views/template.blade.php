@@ -159,8 +159,13 @@ class="w-full h-full">
         @yield('Corps de la page')
 
         {{-- Pied de page --}}
-        <footer class="h-32">
-
+        <footer class="flex
+            h-32
+            items-center justify-center
+            mt-10 
+            bg-zinc-800
+            text-white">
+            FOOTER
         </footer>
     </body>
 
