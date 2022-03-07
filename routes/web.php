@@ -54,20 +54,40 @@ Route::post('validation-creation-evenement',
     [EvenementController::class,'store']
     )->name('validation-creation-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
+//Route du formulaire d'ajout d'un partenaire validé
+Route::post('validation-creation-partenaire',
+    [PartenaireController::class,'store']
+    )->name('validation-creation-partenaire');   //->middleware('auth')->middleware('IsAdmin')
+
 //Route vers le formulaire de MAJ d'evenement
 Route::get('modification-evenement/{id}',
     [EvenementController::class,'edit']
     )->name('modification-evenement');   //->middleware('auth')
 
+//Route vers le formulaire de MAJ d'un partenaire
+Route::get('modification-partenaire/{id}',
+    [PartenaireController::class,'edit']
+    )->name('modification-partenaire');   //->middleware('auth')
+
 //Route du formulaire de MAJ d'evenement validé
 Route::post('validation-modification-evenement/{id}',
-[EvenementController::class,'update']
-)->name('validation-modification-evenement');   //->middleware('auth')->middleware('IsAdmin')
+    [EvenementController::class,'update']
+    )->name('validation-modification-evenement');   //->middleware('auth')->middleware('IsAdmin')
+
+//Route du formulaire de MAJ d'un partenaire validé
+Route::post('validation-modification-partenaire/{id}',
+    [PartenaireController::class,'update']
+    )->name('validation-modification-partenaire');   //->middleware('auth')->middleware('IsAdmin')
 
 //Route vers le formulaire de MAJ d'evenement
 Route::delete('suppression-evenement/{id}',
     [EvenementController::class,'destroy']
     )->name('suppression-evenement');   //->middleware('auth')
+
+//Route vers le formulaire de MAJ d'evenement
+Route::delete('suppression-partenaire/{id}',
+    [PartenaireController::class,'destroy']
+    )->name('suppression-partenaire');   //->middleware('auth')
 
 //Route vers le formulaire d'ajout photo
 Route::get('creation-photo',
