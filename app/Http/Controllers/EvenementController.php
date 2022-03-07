@@ -84,8 +84,9 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEvenementRequest $request, $evenement)
+    public function update(UpdateEvenementRequest $request, $id)
     {
+        $evenement = Evenement::find($id);
         $evenement->libelle=$request->get('libelle');
         $evenement->date_debut=$request->get('date_debut');
         $evenement->date_fin=$request->get('date_fin');
@@ -107,8 +108,9 @@ class EvenementController extends Controller
      */
     public function destroy($id)
     {
-        Evenement::destroy($id);
-        return redirect()->route('Accueil');
+        $evenement = Evenement::find($id);
+        Evenement::destroy($evenement);
+        return redirect()->back();
     }
 
     //retour à la page d'accueil
