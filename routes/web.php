@@ -50,7 +50,7 @@ Route::get('creation-evenement',
     )->name('creation-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
 //Route du formulaire d'ajout d'evenement validé
-Route::get('validation-creation-evenement',
+Route::post('validation-creation-evenement',
     [EvenementController::class,'store']
     )->name('validation-creation-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
@@ -60,12 +60,12 @@ Route::get('modification-evenement/{id}',
     )->name('modification-evenement');   //->middleware('auth')
 
 //Route du formulaire de MAJ d'evenement validé
-Route::get('validation-modification-evenement/{id}',
+Route::post('validation-modification-evenement/{id}',
 [EvenementController::class,'update']
 )->name('validation-modification-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
 //Route vers le formulaire de MAJ d'evenement
-Route::get('suppression-evenement',
+Route::delete('suppression-evenement/{id}',
     [EvenementController::class,'destroy']
     )->name('suppression-evenement');   //->middleware('auth')
 

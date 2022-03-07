@@ -6,7 +6,7 @@
     flex flex-col
     w-full h-fit">
 
-    <form action="{{route('validation-modification-evenement/{id}')}}" method="POST">
+    <form action="{{route('validation-modification-evenement')}}" method="POST">
         @csrf
         <div class="form-group">
             <label for="formGroupExampleInput">Libelle de L'Évenement</label>
