@@ -17,6 +17,7 @@ class CreatePartenairesTable extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('lien');
+            $table->string('url_logo');
             $table->string('description');
             $table->timestamps();
         });

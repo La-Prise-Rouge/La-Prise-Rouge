@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evenement;
+use App\Models\Partenaire;
 use App\Http\Requests\StoreEvenementRequest;
 use App\Http\Requests\UpdateEvenementRequest;
 
@@ -115,16 +116,12 @@ class EvenementController extends Controller
     //retour à la page d'accueil
     public function retourneAccueil()
     {
-        $event = Evenement::all()->where('est_cloturer', '0')->first();
-        if ($event == "") {
-            $event = Evenement::all()->first(); //->OrderBy('date_debut', 'DESC')
-            $date = now();
-            if (Evenement::all()->where('date_debut', '<', $date)->first()) { //->OrderBy('date_debut', 'DESC')
-                $event = "Aucun Évenement à venir";
-            }
+        $evenement = Evenement::all()->where('est_cloturer', 0)->first();
+        $partenaires = Partenaire::all();
+        if (empty($evenement)) {
+            return view('accueil', compact('partenaires'));
         }
-        $evenement = $event;
-        return view('accueil', compact('evenement'));
+        return view('accueil', compact('evenement', 'partenaires'));
     }
 
     //retour à la page des evenements
