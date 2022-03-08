@@ -13,7 +13,7 @@ class CreateEvenementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Evenements', function (Blueprint $table) {
+        Schema::create('evenements', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
             $table->date('date_debut')->format('Y/m/d');

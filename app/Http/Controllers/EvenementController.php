@@ -118,14 +118,12 @@ class EvenementController extends Controller
     {
         $evenement = Evenement::all()->where('est_cloturer', 0)->first();
         $partenaires = Partenaire::all();
-        if ($partenaires->count() > 0) {
-            if (empty($evenement)) {
-                return view('accueil', compact('partenaires'));
-            }
-            return view('accueil', compact('evenement', 'partenaires'));
+        if (empty($evenement)) {
+            return view('accueil', compact('partenaires'));
         }else {
-            return view('accueil');
+            return view('accueil', compact('evenement', 'partenaires'));
         }
+        
     }
 
     //retour à la page des evenements

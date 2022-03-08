@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
 class PromotionFactory extends Factory
 {
@@ -13,8 +15,21 @@ class PromotionFactory extends Factory
      */
     public function definition()
     {
+        $libelle = [
+            'SIO',
+            'ASI',
+            'FED',
+            'AM',
+            'CGO',
+            'PMI',
+            'SP3S',
+            'NRC',
+            'TC',
+            'CI',
+            'DCG'
+        ];
         return [
-            'libelle'=> rand(1, 11),
+            'libelle'=> Arr::random($libelle),
             'annee' => $this->faker-> year(now()),
             'type'=> rand(1, 2)
         ];

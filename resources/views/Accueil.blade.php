@@ -62,7 +62,9 @@
         <section class="
             flex flex-col
             w-full
-            mt-6 md:mt-32" >
+            bg-cover
+            mt-6 md:mt-32" 
+            style="background-image: url({{ asset('storage/don-de-moelle-osseuse-enfant.png') }})">
 
             <div class="h-fit
                 flex flex-col
@@ -203,17 +205,90 @@
                 </a>
             </div>
         </section>
+        
 
         {{-- Section: Partenaires --}}
         <section class="mt-8">
 
-            <div class="
-                flex flex-col
-                px-1/12 py-2 pb-5
-                bg-red-600
-                shadow-lg shadow-red-200">
+            @if ($partenaires->Count() > 0)
+            {{-- Carroussel --}}
+            <div class="glide relative">
+
+                    <div class="glide__track h-full" data-glide-el="track">
+
+                        {{-- Liste des logos --}}
+                        <ul class="glide__slides
+                            h-full">
+
+                            {{-- Pour chaque partenaires, On affiche son logo --}}
+                            @foreach ($partenaires as $key => $partenaire)
+                                <li class="glide__slide
+                                    flex 
+                                    h-full
+                                    justify-center align-middle">
+                                <img src="{{ asset($partenaire->url_logo) }}" 
+                                    class="rounded-lg h-24">
+                                </li>
+                            @endforeach
+                            
+                                
+
+                        </ul>
+                    </div>
+
+                    {{-- Controleurs --}}
+                    <div class="glide__arrows flex justify-between px-2 absolute w-full top-1/2" data-glide-el="controls">
+
+                        {{-- Retour --}}
+                        <button class="glide__arrow glide__arrow--left flex p-2 bg-white rounded-full text-gray-500 text-center align-middle border-2 hover:border-gray-500 hover:text-black " data-glide-dir="<">
+                            <ion-icon name="chevron-back-outline"></ion-icon>
+                        </button>
+
+                        {{-- Avant --}}
+                        <button class="glide__arrow glide__arrow--right flex p-2 bg-white rounded-full text-gray-500 text-center align-middle border-2 hover:border-gray-500 hover:text-black " data-glide-dir=">">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </button>
+
+                    </div>
             </div>
+
+            @else
+                <h1 class="w-full 
+                    text-center 
+                    font-semibold text-xl">
+                    Les Partenaires seront bientôt disponibles
+                </h1>
+            @endif
+
         </section>
+        
+        {{-- Options du Carrousel --}}
+        <script>
+            
+            // Configuration
+            const config = {
+                type: 'carousel',
+                startAt: 0,
+                perView: 4,
+                gap: 40,
+                autoplay: 5000,
+                hoverpause: true,
+                animationDuration: 800,
+                breakpoints: {
+                    1024: {
+                    perView: 3
+                    },
+                    600: {
+                    perView: 2,
+                    gap: 0,
+                    }
+                }
+            };
+            // Création de l'animation
+            new Glide('.glide', config).mount()
+
+        </script>
+
     </main>
 
 @endsection
