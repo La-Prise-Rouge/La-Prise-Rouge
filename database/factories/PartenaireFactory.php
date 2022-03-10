@@ -16,6 +16,7 @@ class PartenaireFactory extends Factory
         return [
             'libelle'=> $this->faker->text(100),
             'lien'=> $this->faker->text(100),
+            'url_logo'=> $this->faker->text(50),
             'description'=> $this->faker->text(100)
         ];
     }

@@ -15,7 +15,8 @@ class PartenaireController extends Controller
      */
     public function index()
     {
-        //
+        $partenaires = Partenaire::paginate(10);
+        return view('Accueil')->with('partenaires', $partenaires);
     }
 
     /**
@@ -25,7 +26,7 @@ class PartenaireController extends Controller
      */
     public function create()
     {
-        //
+        return view('partenaire.form_ajout_partenaire');
     }
 
     /**
@@ -36,7 +37,14 @@ class PartenaireController extends Controller
      */
     public function store(StorePartenaireRequest $request)
     {
-        //
+        $partenaire= new Partenaire();
+        $partenaire->libelle=$request->get('libelle');
+        $partenaire->lien=$request->get('lien');
+        $partenaire->url_logo=$request->get('url_logo');
+        $partenaire->description=$request->get('description');
+
+        $partenaire->save();
+        return redirect()->back();
     }
 
     /**
@@ -45,9 +53,10 @@ class PartenaireController extends Controller
      * @param  \App\Models\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function show(Partenaire $partenaire)
+    public function show(Partenaire $id)
     {
-        //
+        $partenaire = Partenaire::find($id);
+        return view('Accueil')->with('partenaire', $partenaire);
     }
 
     /**
@@ -56,9 +65,10 @@ class PartenaireController extends Controller
      * @param  \App\Models\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function edit(Partenaire $partenaire)
+    public function edit(Partenaire $id)
     {
-        //
+        $partenaire = Partenaire::find($id);
+        return view('partenaire.form_upd_partenaire', compact("partenaire"));
     }
 
     /**
@@ -68,9 +78,16 @@ class PartenaireController extends Controller
      * @param  \App\Models\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePartenaireRequest $request, Partenaire $partenaire)
+    public function update(UpdatePartenaireRequest $request, Partenaire $id)
     {
-        //
+        $partenaire = Partenaire::find($id);
+        $partenaire->libelle=$request->get('libelle');
+        $partenaire->lien=$request->get('lien');
+        $partenaire->url_logo=$request->get('url_logo');
+        $partenaire->description=$request->get('description');
+
+        $partenaire->save();
+        return redirect()->back();
     }
 
     /**
@@ -79,8 +96,10 @@ class PartenaireController extends Controller
      * @param  \App\Models\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partenaire $partenaire)
+    public function destroy(Partenaire $id)
     {
-        //
+        $partenaire = Partenaire::find($id);
+        Partenaire::destroy($partenaire);
+        return redirect()->back();
     }
 }

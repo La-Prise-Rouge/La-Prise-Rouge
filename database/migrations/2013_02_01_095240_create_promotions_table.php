@@ -13,7 +13,7 @@ class CreatePromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Promotions', function (Blueprint $table) {
+        Schema::create('promotions', function (Blueprint $table) {
             $table->id();
             $table->enum('libelle',[
                 'SIO',

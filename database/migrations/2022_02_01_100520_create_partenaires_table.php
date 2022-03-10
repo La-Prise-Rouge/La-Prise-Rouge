@@ -13,10 +13,11 @@ class CreatePartenairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Partenaires', function (Blueprint $table) {
+        Schema::create('partenaires', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
             $table->string('lien');
+            $table->string('url_logo');
             $table->string('description');
             $table->timestamps();
         });

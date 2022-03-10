@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com
+! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -973,6 +973,24 @@ select {
 .bottom-0 {
   bottom: 0px;
 } 
+.top-5 {
+  top: 1.25rem;
+} 
+.top-4 {
+  top: 1rem;
+} 
+.top-48 {
+  top: 12rem;
+} 
+.left-48 {
+  left: 12rem;
+} 
+.top-1\/2 {
+  top: 50%;
+} 
+.left-1\/2 {
+  left: 50%;
+} 
 .z-0 {
   z-index: 0;
 } 
@@ -1153,6 +1171,12 @@ select {
 } 
 .h-1\/2 {
   height: 50%;
+} 
+.h-24 {
+  height: 6rem;
+} 
+.h-60 {
+  height: 15rem;
 } 
 .min-h-screen {
   min-height: 100vh;
@@ -1439,6 +1463,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
 } 
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+} 
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
@@ -1494,6 +1522,10 @@ select {
 .bg-transparent {
   background-color: transparent;
 } 
+.bg-zinc-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+} 
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 } 
@@ -1524,6 +1556,9 @@ select {
 } 
 .p-5 {
   padding: 1.25rem;
+} 
+.p-4 {
+  padding: 1rem;
 } 
 .px-4 {
   padding-left: 1rem;
@@ -1592,6 +1627,10 @@ select {
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+} 
+.px-1\/12 {
+  padding-left: 8%;
+  padding-right: 8%;
 } 
 .pt-6 {
   padding-top: 1.5rem;
@@ -1850,6 +1889,11 @@ select {
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 } 
+.shadow-inner-center {
+  --tw-shadow: inset 0px 0px 5px 2px rgba(255,255,255,5);
+  --tw-shadow-colored: inset 0px 0px 5px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+} 
 .shadow-gray-600 {
   --tw-shadow-color: #4b5563;
   --tw-shadow: var(--tw-shadow-colored);
@@ -1864,6 +1908,14 @@ select {
 } 
 .shadow-red-400 {
   --tw-shadow-color: #f87171;
+  --tw-shadow: var(--tw-shadow-colored);
+} 
+.shadow-gray-300 {
+  --tw-shadow-color: #d1d5db;
+  --tw-shadow: var(--tw-shadow-colored);
+} 
+.shadow-white {
+  --tw-shadow-color: #fff;
   --tw-shadow: var(--tw-shadow-colored);
 } 
 .ring-1 {
@@ -1932,9 +1984,19 @@ select {
   --tw-scale-x: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 } 
+.hover\:border:hover {
+  border-width: 1px;
+} 
+.hover\:border-2:hover {
+  border-width: 2px;
+} 
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+} 
+.hover\:border-gray-500:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
 } 
 .hover\:bg-indigo-600:hover {
   --tw-bg-opacity: 1;
@@ -1993,6 +2055,10 @@ select {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+} 
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 } 
 .hover\:shadow-2xl:hover {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);

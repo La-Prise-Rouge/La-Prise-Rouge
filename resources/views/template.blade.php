@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-class="w-full h-full">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
         <meta charset="utf-8">
@@ -12,6 +11,8 @@ class="w-full h-full">
         {{-- Style --}}
         <link href="{{ asset('css/app.css') }}" rel='stylesheet'>
         <script src="{{asset('js/app.js')}}" language="javascript"></script>
+        <link rel="stylesheet" href="../node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+        <script src="../node_modules/@glidejs/glide/dist/glide.min.js"></script>
 
         {{-- Lien à Ion-Icon --}}
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -19,7 +20,7 @@ class="w-full h-full">
 
     </head>
 
-    <body class="antialiased w-full h-full">
+    <body class="antialiased">
 
         {{-- Menu supérieur --}}
         <header class="flex flex-row h-16 align-middle items-center justify-between bg-white">
@@ -55,16 +56,14 @@ class="w-full h-full">
                 md:bg-transparent
                 md:text-black md:font-normal"
                 id="menu_nav">
-                <a {{(request()->routeIs('Accueil')) ? 'active' : ''}}
-                    href="{{ route('Accueil') }}"
+                <a href="{{ route('Accueil') }}"
                     class="flex
                     w-full h-full
                     items-center justify-center
                     hover:bg-red-600
                     hover:text-white hover:font-semibold
                     transition-all">Accueil</a>
-                <a {{(request()->routeIs('Evenements')) ? 'active' : ''}}
-                    href="{{ route('Evenements') }}"
+                <a href="{{ route('Evenements') }}"
                     class="flex
                     w-full h-full
                     items-center justify-center
@@ -159,8 +158,13 @@ class="w-full h-full">
         @yield('Corps de la page')
 
         {{-- Pied de page --}}
-        <footer class="h-32">
-
+        <footer class="flex
+            h-60
+            items-center justify-center
+            mt-10 
+            bg-zinc-800
+            text-white">
+            FOOTER
         </footer>
     </body>
 

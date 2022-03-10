@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evenement;
+use App\Models\Partenaire;
 use App\Http\Requests\StoreEvenementRequest;
 use App\Http\Requests\UpdateEvenementRequest;
 
@@ -83,8 +84,9 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEvenementRequest $request, $evenement)
+    public function update(UpdateEvenementRequest $request, $id)
     {
+        $evenement = Evenement::find($id);
         $evenement->libelle=$request->get('libelle');
         $evenement->date_debut=$request->get('date_debut');
         $evenement->date_fin=$request->get('date_fin');
@@ -106,23 +108,22 @@ class EvenementController extends Controller
      */
     public function destroy($id)
     {
-        Evenement::destroy($id);
-        return redirect()->route('Accueil');
+        $evenement = Evenement::find($id);
+        Evenement::destroy($evenement);
+        return redirect()->back();
     }
 
     //retour à la page d'accueil
     public function retourneAccueil()
     {
-        $event = Evenement::all()->where('est_cloturer', '0')->first();
-        if ($event == "") {
-            $event = Evenement::all()->first(); //->OrderBy('date_debut', 'DESC')
-            $date = now();
-            if (Evenement::all()->where('date_debut', '<', $date)->first()) { //->OrderBy('date_debut', 'DESC')
-                $event = "Aucun Évenement à venir";
-            }
+        $evenement = Evenement::all()->where('est_cloturer', 0)->first();
+        $partenaires = Partenaire::all();
+        if (empty($evenement)) {
+            return view('accueil', compact('partenaires'));
+        }else {
+            return view('accueil', compact('evenement', 'partenaires'));
         }
-        $evenement = $event;
-        return view('accueil', compact('evenement'));
+        
     }
 
     //retour à la page des evenements
