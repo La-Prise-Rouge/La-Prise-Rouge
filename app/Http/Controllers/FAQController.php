@@ -15,7 +15,8 @@ class FAQController extends Controller
      */
     public function index()
     {
-        //
+        $faqs = FAQ::paginate(10);
+        return view('FAQ')->with('faqs', $faqs);
     }
 
     /**
@@ -25,7 +26,8 @@ class FAQController extends Controller
      */
     public function create()
     {
-        //
+        //Envoi sur le formulaire de création
+        return view('photo.formAjoutPhoto');
     }
 
     /**

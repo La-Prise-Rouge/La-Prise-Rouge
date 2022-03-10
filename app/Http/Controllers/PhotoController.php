@@ -15,7 +15,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $photos = Photo::paginate(10);
+        return view('Accueil')->with('photos', $photos);
     }
 
     /**

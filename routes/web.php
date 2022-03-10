@@ -49,6 +49,11 @@ Route::get('creation-evenement',
     [EvenementController::class,'create']
     )->name('creation-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
+//Route vers le formulaire d'ajout d'une FAQ
+Route::get('creation-faq',
+    [EvenementController::class,'create']
+    )->name('creation-faq');   //->middleware('auth')->middleware('IsAdmin')
+
 //Route du formulaire d'ajout d'evenement validé
 Route::post('validation-creation-evenement',
     [EvenementController::class,'store']
@@ -58,6 +63,11 @@ Route::post('validation-creation-evenement',
 Route::post('validation-creation-partenaire',
     [PartenaireController::class,'store']
     )->name('validation-creation-partenaire');   //->middleware('auth')->middleware('IsAdmin')
+
+//Route du formulaire d'ajout d'une FAQ validé
+Route::post('validation-creation-faq',
+    [FAQController::class,'store']
+    )->name('validation-creation-faq');   //->middleware('auth')->middleware('IsAdmin')
 
 //Route vers le formulaire de MAJ d'evenement
 Route::get('modification-evenement/{id}',
