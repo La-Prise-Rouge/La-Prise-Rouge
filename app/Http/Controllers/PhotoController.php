@@ -56,7 +56,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $id)
     {
-        //Permet de visualiser un evenement
+        //Permet de visualiser une photo
         $photo = Photo::find($id);
         return view('Accueil')->with('photo', $photo);
     }

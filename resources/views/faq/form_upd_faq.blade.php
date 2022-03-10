@@ -6,7 +6,7 @@
     flex flex-col
     w-full h-fit">
 
-    <form action="{{route('validation-creation-faq')}}" method="POST">
+    <form action="{{route('validation-modification-faq', $faq->id)}}" method="POST">
         @csrf
         <div class="form-group">
             <label for="formGroupExampleInput">Question</label>

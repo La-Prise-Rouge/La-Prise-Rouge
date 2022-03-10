@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\PartenaireController;
+use App\Http\Controllers\FAQController;
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,24 +23,35 @@ Route::get('/', [EvenementController::class,'retourneAccueil']);
 //Route d'accueil
 Route::get('Accueil',
     [EvenementController::class,'retourneAccueil']
-    )->name('Accueil');   //->middleware('auth')
+    )->name('Accueil');
 
 //Route vers un evenement
 Route::get(
     'Evenement/{id}',
     [EvenementController::class,'retourneEvenement']
-    )->name('Evenement');      //->middleware('auth')
+    )->name('Evenement');
+
+//Route vers un evenement
+Route::get(
+    'faq/{id}',
+    [FAQController::class,'retourne_faq']
+    )->name('faq');
 
 //Route vers l'evenement en cours
 Route::get(
     'Evenement',
     [EvenementController::class,'retourneEvenementEnCours']
-    )->name('EvenementEnCours');      //->middleware('auth')
+    )->name('EvenementEnCours');
 
 //Route vers l'ensemble des évenements
 Route::get('Evenements',
     [EvenementController::class,'retourneEvenements']
-    )->name('Evenements');       //->middleware('auth')
+    )->name('Evenements');
+
+//Route vers l'ensemble des faqs
+Route::get('faqs',
+    [FAQController::class,'retourne_faqs']
+    )->name('faqs');
 
 //Authentification LiveWire
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -51,7 +65,7 @@ Route::get('creation-evenement',
 
 //Route vers le formulaire d'ajout d'une FAQ
 Route::get('creation-faq',
-    [EvenementController::class,'create']
+    [FAQController::class,'create']
     )->name('creation-faq');   //->middleware('auth')->middleware('IsAdmin')
 
 //Route du formulaire d'ajout d'evenement validé
@@ -79,6 +93,11 @@ Route::get('modification-partenaire/{id}',
     [PartenaireController::class,'edit']
     )->name('modification-partenaire');   //->middleware('auth')
 
+//Route vers le formulaire de MAJ d'une faq
+Route::get('modification-faq/{id}',
+    [FAQController::class,'edit']
+    )->name('modification-faq');   //->middleware('auth')
+
 //Route du formulaire de MAJ d'evenement validé
 Route::post('validation-modification-evenement/{id}',
     [EvenementController::class,'update']
@@ -89,10 +108,20 @@ Route::post('validation-modification-partenaire/{id}',
     [PartenaireController::class,'update']
     )->name('validation-modification-partenaire');   //->middleware('auth')->middleware('IsAdmin')
 
+//Route du formulaire de MAJ d'un faq validé
+Route::post('validation-modification-faq/{id}',
+    [FAQController::class,'update']
+    )->name('validation-modification-faq');   //->middleware('auth')->middleware('IsAdmin')
+
 //Route vers le formulaire de MAJ d'evenement
 Route::delete('suppression-evenement/{id}',
     [EvenementController::class,'destroy']
     )->name('suppression-evenement');   //->middleware('auth')
+
+//Route vers le formulaire de MAJ d'une faq
+Route::delete('suppression-faq/{id}',
+    [FAQController::class,'destroy']
+    )->name('suppression-faq');   //->middleware('auth')
 
 //Route vers le formulaire de MAJ d'evenement
 Route::delete('suppression-partenaire/{id}',

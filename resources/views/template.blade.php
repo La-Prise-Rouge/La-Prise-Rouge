@@ -84,7 +84,7 @@
                     hover:bg-red-600
                     hover:text-white hover:font-semibold
                     transition-all">Don de Moelle</a>
-                <a href="#"
+                <a href="{{ route('faqs') }}"
                     class="flex
                     w-full h-full
                     items-center justify-center
@@ -161,7 +161,7 @@
         <footer class="flex
             h-60
             items-center justify-center
-            mt-10 
+            mt-10
             bg-zinc-800
             text-white">
             FOOTER
