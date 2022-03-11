@@ -282,7 +282,7 @@
                     <ion-icon name="map"></ion-icon>
                     Trouvez vos centres
                 </a>
-                
+
             </div>
         </section>
 

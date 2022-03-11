@@ -46,7 +46,7 @@ Route::get(
 //Route vers l'ensemble des évenements
 Route::get('Evenements',
     [EvenementController::class,'retourneEvenements']
-    )->name('Evenements');
+    )->name('evenements');
 
 //Route vers l'ensemble des faqs
 Route::get('faqs',

@@ -7,6 +7,7 @@
 
         {{-- Titre --}}
         <title>@yield('Titre')</title>
+        <link rel="icon" type="image/ico" href="{{ asset('storage/goute de sang.ico') }}"/>
 
         {{-- Style --}}
         <link href="{{ asset('css/app.css') }}" rel='stylesheet'>
@@ -159,7 +160,7 @@
                     @elseif (Auth::user()->admin == 0)
                         <a href="#" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Espace administrateur</a>
                         <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des utilisateurs</a>
-                        <a href="{{ route('Evenements') }}" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des évenements</a>
+                        <a href="{{ route('evenements') }}" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des évenements</a>
                     @endif
 
                     {{-- Bouton de deconnexion --}}
