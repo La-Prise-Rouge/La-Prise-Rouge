@@ -18,15 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [EvenementController::class,'retourneAccueil']);
 
 //Route d'accueil
-Route::get('Accueil',
+Route::get('accueil',
     [EvenementController::class,'retourneAccueil']
-    )->name('Accueil');   //->middleware('auth')
+    )->name('accueil');   //->middleware('auth')
 
 //Route vers un evenement
 Route::get(
-    'Evenement/{id}',
+    'evenement/{id}',
     [EvenementController::class,'retourneEvenement']
-    )->name('Evenement');      //->middleware('auth')
+    )->name('evenement');      //->middleware('auth')
 
 //Route vers l'evenement en cours
 Route::get(

@@ -10,11 +10,15 @@
 document.addEventListener('DOMContentLoaded', function (event) {
   // Affichage du menu Utilisateur
   var $buttonUser = document.getElementById('buttonUser');
-  var $formUser = document.getElementById('formUser'); // Fonction d'évenement au click
+  var $formUser = document.getElementById('formUser');
 
-  $buttonUser.addEventListener('click', function () {
-    $formUser.classList.toggle('hidden');
-  }); // Affichage du menu Navigation
+  if ($buttonUser != null) {
+    // Fonction d'évenement au click
+    $buttonUser.addEventListener('click', function () {
+      $formUser.classList.toggle('hidden');
+    });
+  } // Affichage du menu Navigation
+
 
   var $button_navigation = document.getElementById('boutton_nav');
   var $menu_navigation = document.getElementById('menu_nav');
