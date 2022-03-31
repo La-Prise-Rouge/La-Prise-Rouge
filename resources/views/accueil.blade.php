@@ -26,7 +26,7 @@
                     transition-all">
         Don du Sang
     </a>
-    
+
     {{-- Direction FAQ Don de moelle --}}
     <a href="#info_don_moelle"
         class="flex
@@ -81,7 +81,7 @@
         {{-- Présentation du site --}}
         <div class="
             flex flex-col top-0 left-0
-            pb-60 pt-40 pl-5 
+            pb-60 pt-40 pl-5
             bg-cover bg-no-repeat
             shadow-inner-bottom
             md:py-60 md:pl-1/3"
@@ -145,10 +145,10 @@
                     p-3 px-10
                     rounded-full
                     bg-white font-semibold
-                    text-center uppercase 
+                    text-center uppercase
                     self-center
                     hover:bg-gray-500 hover:shadow-2xl hover:text-white
-                    transition-all 
+                    transition-all
                     md:w-96">
                     <ion-icon name="bandage-outline"></ion-icon>
                     Posez vos questions
@@ -214,7 +214,7 @@
                     bg-red-600 font-semibold
                     text-center uppercase text-white
                     self-center
-                    hover:bg-red-400 hover:shadow-2xl 
+                    hover:bg-red-400 hover:shadow-2xl
                     transition-all
                     md:w-96">
                     <ion-icon name="pulse-outline"></ion-icon>
@@ -227,7 +227,7 @@
         {{-- Section: Evenement en cours --}}
         <section
             class="flex flex-col
-            w-full h-fit 
+            w-full h-fit
             items-center
             mt-7
             bg-cover
@@ -239,7 +239,7 @@
             @if (isset($evenement))
                 {{-- Titre de la section --}}
                 <h2 class="w-full h-10
-                    text-xl text-center font-semibold 
+                    text-xl text-center font-semibold
                     z-10">
                     Prochain evenement
                 </h2>
@@ -272,8 +272,8 @@
 
                     {{-- Redirection à la page de l'évenement --}}
                     <a href="{{ route('EvenementEnCours') }}"
-                        class="p-2 mb-2 
-                        border-2 border-white 
+                        class="p-2 mb-2
+                        border-2 border-white
                         shadow-inner-center shadow-white">
                         Plus d'Informations
                     </a>
@@ -281,7 +281,7 @@
                     {{-- Redirection à la page d'inscription --}}
                     <a href="#"
                         class="p-2 mb-2
-                        border-2 border-white 
+                        border-2 border-white
                         shadow-inner-center shadow-white">
                         Inscrivez-vous
                     </a>
@@ -289,7 +289,7 @@
                     {{-- Redirection à la page de la listes des Evenements --}}
                     <a href="{{ route('evenements') }}"
                         class="p-2 mb-2
-                        border-2 border-white 
+                        border-2 border-white
                         shadow-inner-center shadow-white">
                         Voir tous les evenements
                     </a>
@@ -299,9 +299,9 @@
                 {{-- S'il n'y a pas d'évenements en cours ou prévus --}}
             @else
                 {{-- Message : Pas d'évènements planifiés --}}
-                <h2 class="w-full 
+                <h2 class="w-full
                     my-16
-                    text-xl md:text-center font-semibold 
+                    text-xl text-center font-semibold
                     z-10 ">
                     Aucun évènement planifié pour l'instant
                 </h2>
@@ -319,7 +319,7 @@
 
             {{-- Titre de la section --}}
             <h2 class="w-full h-10
-                text-xl text-white text-center font-semibold 
+                text-xl text-white text-center font-semibold
                 z-10">
                 Où nous trouver ?
             </h2>
@@ -341,7 +341,7 @@
                 rounded-full
                 bg-white
                 shadow-md  shadow-red-500 font-semibold
-                text-center uppercase 
+                text-center uppercase
                 hover:bg-gray-500 hover:shadow-2xl hover:text-white
                 transition-all">
                 <ion-icon name="map"></ion-icon>
@@ -359,7 +359,7 @@
                 {{-- Carroussel --}}
                 <div class="glide relative">
 
-                    <div class="glide__track 
+                    <div class="glide__track
                         h-full
                         text-center"
                         data-glide-el="track">
@@ -372,11 +372,11 @@
                             @foreach ($partenaires as $key => $partenaire)
                                 <li
                                     class="glide__slide
-                                    flex 
+                                    flex
                                     w-fit h-full
                                     justify-center align-middle">
                                     <a href="#"
-                                        class="w-full h-full 
+                                        class="w-full h-full
                                         flex justify-center">
                                         <img src="{{ asset($partenaire->url_logo) }}" class="rounded-lg h-24">
                                     </a>
@@ -406,8 +406,8 @@
                     </div>
                 </div>
             @else
-                <h1 class="w-full 
-                    text-center 
+                <h1 class="w-full
+                    text-center
                     font-semibold text-xl">
                     Les Partenaires seront bientôt disponibles
                 </h1>

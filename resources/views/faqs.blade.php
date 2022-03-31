@@ -22,7 +22,7 @@
         transition-all">
         Don du Sang
     </a>
-    
+
     {{-- Direction FAQ Don de moelle --}}
     <a href="#info_don_moelle"
         class="flex
@@ -91,12 +91,12 @@
                 </a>
             </div>
 
-            <div class="flex 
+            <div class="flex
                 w-1/2
                 align-middle">
 
                 <form action="#"
-                    method="GET" 
+                    method="GET"
                     class="flex flex-row
                     w-full
                     justify-around align-middle">
@@ -111,26 +111,35 @@
                     </select>
 
 
-                    <input type="submit" 
+                    <input type="submit"
                         value="Recherchez"
                         class="p-2 h-10
                         rounded-md
                         font-semibold text-center text-white
                         bg-red-600 hover:bg-red-400"/>
                 </form>
-                
+
             </div>
         </div>
 
-        <table class="table">
-            <tbody>
+        <div class="m-8">
+            <div>
                 @foreach ($faqs as $faq)
-                    <tr>
-                        <th scope="row">{{$faq->id}}</th>
-                        <td><a href="{{ route('faq', $faq->id) }}">{{$faq->question}}</a></td>
-                    </tr>
+                    <div class="
+                        p-5 m-8
+                        border-2 border-gray-300 rounded-xl
+                        shadow-md shadow-gray-300">
+                        <div class="flex flex-row
+                            justify-between">
+                            <div>{{ $faq->question }}</div>
+                            <h2 >N°{{ $faq->id }}</h2>
+                        </div>
+                        <div>
+                            {{ $faq->reponse }}
+                        </div>
+                    </div>
                 @endforeach
-            </tbody>
-        </table>
+            </div>
+        </div>
     </main>
 @endsection

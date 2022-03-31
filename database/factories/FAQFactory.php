@@ -15,6 +15,8 @@ class FAQFactory extends Factory
     {
         return [
             'question'=> $this->faker->text(100),
-            'reponse'=> $this->faker->text(100)        ];
+            'reponse'=> $this->faker->text(100),
+            'type' => 'Don du Sang'
+        ];
     }
 }
