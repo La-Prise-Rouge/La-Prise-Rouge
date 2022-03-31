@@ -4,6 +4,74 @@
     La Prise Rouge | Don du Sang
 @endsection
 
+@section('menu_navigation')
+    {{-- Direction Accueil --}}
+    <a href="#Accueil"
+        class="flex
+        w-full h-full
+        items-center justify-center
+        hover:bg-red-600
+        hover:text-white hover:font-semibold
+        transition-all">
+        Accueil
+    </a>
+
+    {{-- Direction FAQ Don du sang --}}
+    <a href="#info_don_sang"
+        class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+        Don du Sang
+    </a>
+    
+    {{-- Direction FAQ Don de moelle --}}
+    <a href="#info_don_moelle"
+        class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+        Don de Moelle
+    </a>
+
+    {{-- Direction Evenement en cours --}}
+    <a href="#evenement_en_cours"
+        class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+        Evenement
+    </a>
+
+    {{-- Direction Localisation --}}
+    <a href="#carte_lycee"
+        class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+        Nous Trouver
+    </a>
+
+    {{-- Direction Localisation --}}
+    <a href="#partenaires"
+        class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+        Partenaires
+    </a>
+@endsection
+
 @section('Corps de la page')
 
     <main class="
@@ -17,7 +85,7 @@
             bg-cover bg-no-repeat
             shadow-inner-bottom
             md:py-60 md:pl-1/3"
-            style="background-image: url({{ asset('storage/prise-de-sang.jpg') }})">
+            style="background-image: url({{ asset('storage/prise-de-sang.jpg') }})" id="accueil">
             <h1 class="text-3xl font-bold text-red-600 text">La Prise Rouge</h1>
             <h2 class="text-xl font-semibold">Inscrivez-vous au Don du Sang du Lycée Pasteur Mont-Roland</h2>
         </div>
@@ -25,7 +93,7 @@
         {{-- Informations sur le Don du Sang --}}
         <section class="flex flex-col
             w-full
-            mt-6 ">
+            mt-6" id="info_don_sang">
 
             <div class="h-fit
                 flex flex-col
@@ -93,7 +161,7 @@
         <section class="
             flex flex-col
             w-full
-            mt-6">
+            mt-6" id="info_don_moelle">
 
             <div class="h-fit
                 flex flex-col
@@ -164,6 +232,7 @@
             mt-7
             bg-cover
             text-white"
+            id="evenement_en_cours"
             style="background-image: url({{ asset('storage/lycee.jpg') }})">
 
             {{-- Si un évenement est en cours --}}
@@ -218,7 +287,7 @@
                     </a>
 
                     {{-- Redirection à la page de la listes des Evenements --}}
-                    <a href="{{ route('evenements')}}"
+                    <a href="{{ route('evenements') }}"
                         class="p-2 mb-2
                         border-2 border-white 
                         shadow-inner-center shadow-white">
@@ -230,8 +299,7 @@
                 {{-- S'il n'y a pas d'évenements en cours ou prévus --}}
             @else
                 {{-- Message : Pas d'évènements planifiés --}}
-                <h2
-                    class="w-full 
+                <h2 class="w-full 
                     my-16
                     text-xl md:text-center font-semibold 
                     z-10 ">
@@ -242,53 +310,50 @@
         </section>
 
         {{-- Section: Carte API Google --}}
-        <section>
+        <div class="
+            flex flex-col
+            px-1/12 py-2 pb-5
+            bg-red-600
+            shadow-lg shadow-red-200"
+            id="carte_lycee">
 
-            <div
+            {{-- Titre de la section --}}
+            <h2 class="w-full h-10
+                text-xl text-white text-center font-semibold 
+                z-10">
+                Où nous trouver ?
+            </h2>
+
+            {{-- Vue de la Map --}}
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1358.1321977904079!2d5.4887812203658415!3d47.09388725506285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478d4cbd41621bd5%3A0xa60717d72858f694!2sLyc%C3%A9e%20Pasteur%20Mont%20Roland%20-%20Site%20Mont%20Roland!5e0!3m2!1sen!2sfr!4v1646497280522!5m2!1sen!2sfr"
                 class="
-                flex flex-col
-                px-1/12 py-2 pb-5
-                bg-red-600
-                shadow-lg shadow-red-200">
+                w-full h-72
+                rounded-md
+                shadow-md shadow-red-400
+                transition-all"
+                loading="lazy"></iframe>
 
-                {{-- Titre de la section --}}
-                <h2
-                    class="w-full h-10
-                    text-xl text-white text-center font-semibold 
-                    z-10">
-                    Où nous trouver ?
-                </h2>
+            {{-- Redirection à la localisation des centres de dons --}}
+            <a href="#"
+                class="mt-5
+                p-3 px-10
+                rounded-full
+                bg-white
+                shadow-md  shadow-red-500 font-semibold
+                text-center uppercase 
+                hover:bg-gray-500 hover:shadow-2xl hover:text-white
+                transition-all">
+                <ion-icon name="map"></ion-icon>
+                Trouvez vos centres
+            </a>
 
-                {{-- Vue de la Map --}}
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1358.1321977904079!2d5.4887812203658415!3d47.09388725506285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478d4cbd41621bd5%3A0xa60717d72858f694!2sLyc%C3%A9e%20Pasteur%20Mont%20Roland%20-%20Site%20Mont%20Roland!5e0!3m2!1sen!2sfr!4v1646497280522!5m2!1sen!2sfr"
-                    class="
-                        w-full h-72
-                        rounded-md
-                        shadow-md shadow-red-400
-                        transition-all"
-                    loading="lazy"></iframe>
-
-                {{-- Redirection à la localisation des centres de dons --}}
-                <a href="#"
-                    class="mt-5
-                    p-3 px-10
-                    rounded-full
-                    bg-white
-                    shadow-md  shadow-red-500 font-semibold
-                    text-center uppercase 
-                    hover:bg-gray-500 hover:shadow-2xl hover:text-white
-                    transition-all">
-                    <ion-icon name="map"></ion-icon>
-                    Trouvez vos centres
-                </a>
-
-            </div>
-        </section>
+        </div>
 
 
         {{-- Section: Partenaires --}}
-        <section class="mt-8">
+        <section class="mt-8"
+            id="partenaires">
 
             @if ($partenaires->Count() > 0)
                 {{-- Carroussel --}}
@@ -296,7 +361,7 @@
 
                     <div class="glide__track 
                         h-full
-                        text-center" 
+                        text-center"
                         data-glide-el="track">
 
                         {{-- Liste des logos --}}
@@ -310,10 +375,10 @@
                                     flex 
                                     w-fit h-full
                                     justify-center align-middle">
-                                    <a href="#" class="w-full h-full 
+                                    <a href="#"
+                                        class="w-full h-full 
                                         flex justify-center">
-                                        <img src="{{ asset($partenaire->url_logo) }}" 
-                                            class="rounded-lg h-24">
+                                        <img src="{{ asset($partenaire->url_logo) }}" class="rounded-lg h-24">
                                     </a>
                                 </li>
                             @endforeach
