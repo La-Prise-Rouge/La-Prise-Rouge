@@ -14,6 +14,7 @@
         <script src="{{ asset('js/app.js') }}"></script>
         <link rel="stylesheet" href="../node_modules/@glidejs/glide/dist/css/glide.core.min.css">
         <script src="../node_modules/@glidejs/glide/dist/glide.min.js"></script>
+        <script src="../node_modules/tw-elements/dist/js/index.min.js"></script>
 
         {{-- Lien à Ion-Icon --}}
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -21,10 +22,16 @@
 
     </head>
 
-    <body class="antialiased">
+    <body class="flex flex-col
+        h-fit min-h-screen antialiased
+        justify-between">
 
         {{-- Menu supérieur --}}
-        <header class="flex flex-row h-16 align-middle items-center justify-between bg-white">
+        <header class="
+            flex flex-row
+            w-full h-16
+            align-middle items-center justify-between
+            bg-white">
 
             {{-- Switch de navigation --}}
             <button class="w-14 h-full
@@ -128,7 +135,7 @@
             text-white
             bg-red-600 bg-opacity-90
             hover:w-1/4 hover:h-20 hover:font-semibold hover:bg-opacity-100
-            transition-all">
+            transition-all z-50">
 
             {{-- Texte du Bouton --}}
             <p>
@@ -137,8 +144,12 @@
 
         </a>
 
-        {{-- Corps de la page --}}
-        @yield('Corps de la page')
+        <main class="
+                flex flex-col
+                w-full h-fit">
+            {{-- Corps de la page --}}
+            @yield('Corps de la page')
+        </main>
 
         {{-- Pied de page --}}
         <footer class="flex flex-col
@@ -239,7 +250,7 @@
 
                         <li>
                             <ion-icon name="call-outline" class="text-red-600"></ion-icon>
-                            Tél : 0384796600
+                            Tél : 03 84 79 66 00
                         </li>
 
                     </ul>
