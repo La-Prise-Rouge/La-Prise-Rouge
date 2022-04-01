@@ -51,7 +51,7 @@ Route::get(
 
 //Route vers l'ensemble des évenements
 Route::get('Evenements',
-    [EvenementController::class,'retourneEvenements']
+    [EvenementController::class,'index']
     )->name('evenements');
 
 //Route vers l'ensemble des évenements
@@ -61,7 +61,7 @@ Route::get('photos',
 
 //Route vers l'ensemble des faqs
 Route::get('faqs',
-    [FAQController::class,'retourne_faqs']
+    [FAQController::class,'index']
     )->name('faqs');
 
 //Authentification LiveWire
