@@ -9,6 +9,8 @@
     <form action="{{route('validation-modification-faq', $faq->id)}}" method="POST">
         @csrf
         <div class="form-group">
+            <label for="formGroupExampleInput">Type</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" name="type" placeholder="Example input">
             <label for="formGroupExampleInput">Question</label>
             <input type="text" class="form-control" id="formGroupExampleInput" name="question" placeholder="Example input">
             <label for="formGroupExampleInput">Réponse</label>

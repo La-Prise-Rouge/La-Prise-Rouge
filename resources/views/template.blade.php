@@ -106,7 +106,7 @@
                     transition-all">
                     Nous Trouver
                 </a>
-                    
+
                     {{-- Direction Localisation --}}
                     <a href="#"
                     class="flex
@@ -146,13 +146,13 @@
                 rounded-b-lg
                 bg-white
                 shadow-xl shadow-gray-600">
-                
+
                 <div class="
                     flex flex-col
                     w-full
                     py-4
                     text-left">
-                    
+
                     {{-- Si on est Administrateur --}}
                     @if (Auth::user()->admin == 1)
 
@@ -202,10 +202,10 @@
 
             <div class="flex flex-col md:flex-row
                 justify-around
-                mb-4"> 
+                mb-4">
 
                 {{-- Section : Redirections sur les pages --}}
-                <div class="flex flex-col 
+                <div class="flex flex-col
                     h-fit
                     mb-3">
 
@@ -238,7 +238,7 @@
                                 <span class="link link-underline">Notre FAQ</span>
                             </a>
                         </li>
-                        
+
                         {{-- Lien vers l'API de l'EFS --}}
                         <li>
                             <ion-icon name="chevron-forward-outline" class="text-red-600"></ion-icon>
@@ -259,7 +259,7 @@
                 </div>
 
                 {{-- Section : Informations sur le lycée --}}
-                <div class="flex flex-col 
+                <div class="flex flex-col
                     h-fit
                     mb-3">
 
@@ -271,7 +271,7 @@
                     {{-- Informations sur le lycée --}}
                     <ul>
                         <li>
-                            55 Bd du Président Wilson, 
+                            55 Bd du Président Wilson,
                         </li>
 
                         <li>
@@ -281,7 +281,7 @@
                         <li>
                             Ouvert de 8h à 12h et de 1h30 à 5h30
                         </li>
-                        
+
                         {{-- Lien au site du lycée --}}
                         <li>
                             <ion-icon name="globe-outline" class="text-red-600"></ion-icon>
@@ -289,7 +289,7 @@
                                 <span class="link link-underline">Le site du lycée</span>
                             </a>
                         </li>
-                        
+
                         <li>
                             <ion-icon name="call-outline" class="text-red-600"></ion-icon>
                             Tél : 0384796600
@@ -299,7 +299,7 @@
                 </div>
 
                 {{-- Section : Informations de contact --}}
-                <div class="flex flex-col 
+                <div class="flex flex-col
                     h-fit
                     mb-3">
 
@@ -319,7 +319,7 @@
                             Téléphone du contact
                         </li>
 
-                        
+
                         {{-- Lien vers la FAQ --}}
                         <li>
                             <ion-icon name="chevron-forward-outline" class="text-red-600"></ion-icon>
@@ -342,7 +342,7 @@
             <p class="text-center text-xs mt-8">
                 ©Lycee-Pasteur-Mont-Roland, Dôle. Créé par les BTS SIO2 en alternance, promotion 2020-2022.
             </p>
-            
+
         </footer>
 
     </body>

@@ -31,6 +31,12 @@ Route::get(
     [EvenementController::class,'retourneEvenement']
     )->name('Evenement');
 
+//Route vers une photo
+Route::get(
+    'photo/{id}',
+    [PhotoController::class,'retournePhoto']
+    )->name('photo');
+
 //Route vers un evenement
 Route::get(
     'faq/{id}',
@@ -47,6 +53,11 @@ Route::get(
 Route::get('Evenements',
     [EvenementController::class,'retourneEvenements']
     )->name('evenements');
+
+//Route vers l'ensemble des évenements
+Route::get('photos',
+    [PhotoController::class,'retournePhotos']
+    )->name('photos');
 
 //Route vers l'ensemble des faqs
 Route::get('faqs',
@@ -132,4 +143,14 @@ Route::delete('suppression-partenaire/{id}',
 Route::get('creation-photo',
     [PhotoController::class,'create']
     )->name('creation-photo');   //->middleware('auth')->middleware('IsAdmin')
+
+//Route du formulaire d'ajout photo
+Route::post('validation-creation-photo',
+    [PhotoController::class,'store']
+    )->name('validation-creation-photo');   //->middleware('auth')->middleware('IsAdmin')
+
+//Route vers le formulaire de suppression photo
+Route::delete('suppression-photo/{id}',
+    [PhotoController::class,'destroy']
+    )->name('suppression-photo');   //->middleware('auth')->middleware('IsAdmin')
 
