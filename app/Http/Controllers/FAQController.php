@@ -15,7 +15,8 @@ class FAQController extends Controller
      */
     public function index()
     {
-        //
+        $faqs = FAQ::paginate(10);
+        return view('faqs')->with('faqs', $faqs);
     }
 
     /**
@@ -25,7 +26,8 @@ class FAQController extends Controller
      */
     public function create()
     {
-        //
+        //Envoi sur le formulaire de création
+        return view('faq.form_ajout_faq');
     }
 
     /**
@@ -45,9 +47,11 @@ class FAQController extends Controller
      * @param  \App\Models\FAQ  $fAQ
      * @return \Illuminate\Http\Response
      */
-    public function show(FAQ $fAQ)
+    public function show(FAQ $id)
     {
-        //
+        //Permet de visualiser une photo
+        $faq = FAQ::find($id);
+        return view('faq')->with('faq', $faq);
     }
 
     /**
@@ -56,9 +60,10 @@ class FAQController extends Controller
      * @param  \App\Models\FAQ  $fAQ
      * @return \Illuminate\Http\Response
      */
-    public function edit(FAQ $fAQ)
+    public function edit($id)
     {
-        //
+        $faq = FAQ::find($id);
+        return view('faq.form_upd_faq', compact("faq"));
     }
 
     /**
@@ -79,8 +84,24 @@ class FAQController extends Controller
      * @param  \App\Models\FAQ  $fAQ
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FAQ $fAQ)
+    public function destroy(FAQ $id)
     {
-        //
+        $faq = FAQ::find($id);
+        FAQ::destroy($faq);
+        return redirect()->back();
+    }
+
+    //retour à la page des faqs
+    public function retourne_faqs()
+    {
+        $faqs = FAQ::all();
+        return view('faqs', compact('faqs'));
+    }
+
+    //retour à la page de la faq en cours
+    public function retourne_faq($id)
+    {
+        $faq = FAQ::find($id);
+        return view('faq', compact('faq'));
     }
 }

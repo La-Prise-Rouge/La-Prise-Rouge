@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     var $buttonUser = document.getElementById('buttonUser');
     var $formUser = document.getElementById('formUser');
 
-    // Fonction d'évenement au click
-    $buttonUser.addEventListener('click', () => {
-        $formUser.classList.toggle('hidden');
-    })    
+    if ($buttonUser != null) {
+        // Fonction d'évenement au click
+        $buttonUser.addEventListener('click', () => {
+            $formUser.classList.toggle('hidden');
+        })   
+    } 
 
     // Affichage du menu Navigation
     var $button_navigation = document.getElementById('boutton_nav');

@@ -15,7 +15,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $photos = Photo::paginate(10);
+        return view('Accueil')->with('photos', $photos);
     }
 
     /**
@@ -55,7 +56,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $id)
     {
-        //Permet de visualiser un evenement
+        //Permet de visualiser une photo
         $photo = Photo::find($id);
         return view('Accueil')->with('photo', $photo);
     }

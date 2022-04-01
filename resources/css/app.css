@@ -6,19 +6,19 @@
 
     .vignettes_info_md div, .vignettes_info_full div{
         @apply
+        font-semibold
         text-center;
     }
 
     /* Style des vignettes d'information sous md: (768px)*/
     .vignettes_info_md div:nth-child(4n+1), .vignettes_info_md div:nth-child(4n){
         @apply 
-        font-semibold text-white
-        bg-red-700
+        bg-red-600 text-white
         bg-opacity-80;
     }    
     .vignettes_info_md div:nth-child(4n+2), .vignettes_info_md div:nth-child(4n+3){
         @apply 
-        bg-gray-200
+        bg-gray-200 text-black
         bg-opacity-60;
     }
 
@@ -26,13 +26,30 @@
 
     .vignettes_info_full div:nth-child(even){
         @apply 
-        text-white
-        bg-red-700
+        bg-red-600 text-white
         bg-opacity-80;
     }
     .vignettes_info_full div:nth-child(odd){
         @apply 
-        bg-gray-200
+        bg-gray-200 text-black
         bg-opacity-60;
     }
+}
+
+.link-underline {
+    border-bottom-width: 0;
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+    background-size: 0 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size .5s ease-in-out;
+}
+
+.link-underline-black {
+    background-image: white;
+}
+
+.link-underline:hover {
+    background-size: 100% 2px;
+    background-position: 0 100%
 }
