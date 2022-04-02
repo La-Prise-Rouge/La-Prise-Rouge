@@ -60,9 +60,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        User::destroy($user);
+        User::destroy($id);
         return redirect()->route('Accueil');
     }
 }

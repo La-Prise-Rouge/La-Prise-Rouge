@@ -6,17 +6,25 @@
     flex flex-col
     w-full h-fit">
 
-    <form action="{{route('Accueil')}}" method="POST">
+    <form action="{{route('validation-creation-photo')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
+        <div class="formGroupExampleInput">
+
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" name="url" id="exampleInputFile">
+            </div>
+
             <label for="formGroupExampleInput">Titre</label>
             <input type="text" class="form-control" id="formGroupExampleInput" name="titre" placeholder="Example input">
-            <label for="formGroupExampleInput">Url</label>
-            <input type="date" class="form-control" id="formGroupExampleInput" name="url" placeholder="Example input">
             <label for="formGroupExampleInput">Description</label>
-            <input type="date" class="form-control" id="formGroupExampleInput" name="description" placeholder="Example input">
+            <input type="text" class="form-control" id="formGroupExampleInput" name="description" placeholder="Example input">
             <label for="formGroupExampleInput">Évenement lié</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" name="evenement_id" placeholder="Example input">
+            <select name="evenement" id="">
+                @foreach ($evenements as $evenement)
+                    <option value="{{$evenement->id}}">{{$evenement->id." - ".$evenement->libelle}}</option>
+                @endforeach 
+            </select>
         </div>
         <button type="submit" class="btn btn-success">Valider</button>
     </form>

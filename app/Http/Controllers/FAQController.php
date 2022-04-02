@@ -49,7 +49,7 @@ class FAQController extends Controller
      */
     public function show(FAQ $id)
     {
-        //Permet de visualiser une photo
+        //Permet de visualiser une faq
         $faq = FAQ::find($id);
         return view('faq')->with('faq', $faq);
     }
@@ -84,10 +84,9 @@ class FAQController extends Controller
      * @param  \App\Models\FAQ  $fAQ
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FAQ $id)
+    public function destroy($id)
     {
-        $faq = FAQ::find($id);
-        FAQ::destroy($faq);
+        FAQ::destroy($id);
         return redirect()->back();
     }
 

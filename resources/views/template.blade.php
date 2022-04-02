@@ -69,6 +69,60 @@
                 md:text-black md:font-normal"
                 id="menu_nav">
 
+                {{-- Direction Accueil --}}
+                <a href="#"
+                    class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+                    Accueil
+                </a>
+
+                {{-- Direction FAQ --}}
+                <a href="#"
+                    class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+                    Informations
+                </a>
+
+                {{-- Direction Evenement en cours --}}
+                <a href="#"
+                    class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+                    Evenement
+                </a>
+
+                {{-- Direction Localisation --}}
+                <a href="#"
+                    class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+                    Nous Trouver
+                </a>
+
+                    {{-- Direction Localisation --}}
+                    <a href="#"
+                    class="flex
+                    w-full h-full
+                    items-center justify-center
+                    hover:bg-red-600
+                    hover:text-white hover:font-semibold
+                    transition-all">
+                    Partenaires
+                </a>
                 @yield('menu_navigation')
 
             </div>

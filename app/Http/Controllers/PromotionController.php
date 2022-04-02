@@ -15,7 +15,8 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        //
+        $promotions = Promotion::paginate(10);
+        return view('Accueil')->with('promotions', $promotions);
     }
 
     /**
@@ -45,9 +46,11 @@ class PromotionController extends Controller
      * @param  \App\Models\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function show(Promotion $promotion)
+    public function show($id)
     {
-        //
+        //Permet de visualiser une photo
+        $promotion = Promotion::find($id);
+        return view('Accueil')->with('promotion', $promotion);
     }
 
     /**
@@ -79,8 +82,9 @@ class PromotionController extends Controller
      * @param  \App\Models\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Promotion $promotion)
+    public function destroy( $id)
     {
-        //
+        Promotion::destroy($id);
+        return redirect()->back();
     }
 }

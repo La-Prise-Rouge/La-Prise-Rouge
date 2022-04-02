@@ -108,9 +108,9 @@ class EvenementController extends Controller
      */
     public function destroy($id)
     {
-        $evenement = Evenement::find($id);
-        Evenement::destroy($evenement);
-        return redirect()->back();
+        Evenement::destroy($id);
+        return redirect()->route('evenements');
+
     }
 
     //retour à la page d'accueil
@@ -123,7 +123,7 @@ class EvenementController extends Controller
         }else {
             return view('accueil', compact('evenement', 'partenaires'));
         }
-        
+
     }
 
     //retour à la page des evenements

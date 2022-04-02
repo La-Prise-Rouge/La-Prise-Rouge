@@ -96,10 +96,9 @@ class PartenaireController extends Controller
      * @param  \App\Models\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partenaire $id)
+    public function destroy($id)
     {
-        $partenaire = Partenaire::find($id);
-        Partenaire::destroy($partenaire);
+        Partenaire::destroy($id);
         return redirect()->back();
     }
 }
