@@ -15,8 +15,8 @@ class UserController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $user = User::paginate(10);
-        return view('User')->with('user', $user);
+        $utilisateurs = User::all();
+        return view('espace_admin.gestion_utilisateur', compact('utilisateurs'));
     }
 
     /**
@@ -35,12 +35,23 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $id)
+    public function show($id)
     {
         $user = User::find($id);
         return view('user')->with('user', $user);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show_admin()
+    {
+        // APPLIQUER LE MIDDLEWARE ADMIN
+        return view('espace_admin.dashboard');
+    }
 
 
     /**

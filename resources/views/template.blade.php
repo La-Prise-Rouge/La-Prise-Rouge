@@ -13,8 +13,8 @@
         <link href="{{ asset('css/app.css') }}" rel='stylesheet'>
         <script src="{{ asset('js/app.js') }}"></script>
         <link rel="stylesheet" href="../node_modules/@glidejs/glide/dist/css/glide.core.min.css">
-        <script src="../node_modules/@glidejs/glide/dist/glide.min.js"></script>
-        <script src="../node_modules/tw-elements/dist/js/index.min.js"></script>
+        <script src="/la-prise-rouge/node_modules/@glidejs/glide/dist/glide.min.js"></script>
+        <script src="/la-prise-rouge/node_modules/tw-elements/dist/js/index.min.js"></script>
 
         {{-- Lien à Ion-Icon --}}
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -23,8 +23,7 @@
     </head>
 
     <body class="flex flex-col
-        h-fit min-h-screen antialiased
-        justify-between">
+        h-fit min-h-screen antialiased">
 
         {{-- Menu supérieur --}}
         <header class="
@@ -91,12 +90,13 @@
 
         {{-- Menu Utilisateur --}}
         @auth
-            {{-- Si on est connecté --}}
+            {{-- Si on est connecté en Utilisateur--}}
             <div id="formUser" class="
                 absolute
                 hidden
                 right-0
                 w-fit h-fit
+                mt-16
                 rounded-b-lg
                 bg-white
                 shadow-xl shadow-gray-600">
@@ -109,12 +109,27 @@
 
                     {{-- Si on est Administrateur --}}
                     @if (Auth::user()->admin == 1)
-
+                        <a href="{{ route('dashboard')}}" class="
+                            w-full px-4
+                            bg-transparent hover:bg-red-500
+                            hover:text-white hover:font-semibold
+                            hover:scale-x-105
+                            transition-all">Espace administrateur</a>
+                        <a href="#" class="
+                            w-full pl-8
+                            pr-4 bg-transparent hover:bg-red-500
+                            hover:text-white hover:font-semibold
+                            hover:scale-x-105
+                            transition-all">↳ Gestion des utilisateurs</a>
+                        <a href="{{ route('evenements') }}" class="
+                            w-full pl-8
+                            pr-4 bg-transparent hover:bg-red-500
+                            hover:text-white hover:font-semibold
+                            hover:scale-x-105
+                            transition-all">↳ Gestion des évenements</a>
                     {{-- Si on est Utilisateur --}}
                     @elseif (Auth::user()->admin == 0)
-                        <a href="#" class="w-full px-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">Espace administrateur</a>
-                        <a href="#" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des utilisateurs</a>
-                        <a href="{{ route('evenements') }}" class="w-full pl-8 pr-4 bg-transparent hover:bg-red-500 hover:text-white hover:font-semibold hover:scale-x-105 transition-all">↳ Gestion des évenements</a>
+
                     @endif
 
                     {{-- Bouton de deconnexion --}}
@@ -127,23 +142,6 @@
             </div>
         @endauth
 
-        {{-- Bouton de participation au Don --}}
-        <a href="{{ route('EvenementEnCours') }}" class="
-            fixed flex bottom-0 left-0
-            w-1/6 h-16 p-5 min-w-fit
-            justify-center items-center
-            text-white
-            bg-red-600 bg-opacity-90
-            hover:w-1/4 hover:h-20 hover:font-semibold hover:bg-opacity-100
-            transition-all z-50">
-
-            {{-- Texte du Bouton --}}
-            <p>
-                Participez au Don
-            </p>
-
-        </a>
-
         <main class="
                 flex flex-col
                 w-full h-fit">
@@ -153,10 +151,10 @@
 
         {{-- Pied de page --}}
         <footer class="flex flex-col
-            w-full h-fit
-            mt-10 py-8 px-2
+            w-full h-fit py-8 px-2
             bg-zinc-800
-            text-white">
+            text-white
+            z-10">
 
             <div class="flex flex-col md:flex-row
                 justify-around

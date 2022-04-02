@@ -1,6 +1,6 @@
-@tailwind base; 
-@tailwind components; 
-@tailwind utilities; 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer components {
 
@@ -12,12 +12,12 @@
 
     /* Style des vignettes d'information sous md: (768px)*/
     .vignettes_info_md div:nth-child(4n+1), .vignettes_info_md div:nth-child(4n){
-        @apply 
+        @apply
         bg-red-600 text-white
         bg-opacity-80;
-    }    
+    }
     .vignettes_info_md div:nth-child(4n+2), .vignettes_info_md div:nth-child(4n+3){
-        @apply 
+        @apply
         bg-gray-200 text-black
         bg-opacity-60;
     }
@@ -25,12 +25,12 @@
     /*Style des vignettes d'information au-dessus de md: (768px)*/
 
     .vignettes_info_full div:nth-child(even){
-        @apply 
+        @apply
         bg-red-600 text-white
         bg-opacity-80;
     }
     .vignettes_info_full div:nth-child(odd){
-        @apply 
+        @apply
         bg-gray-200 text-black
         bg-opacity-60;
     }
