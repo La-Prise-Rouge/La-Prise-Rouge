@@ -15,7 +15,7 @@ class UserController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $utilisateurs = User::all();
+        $utilisateurs = User::paginate(7);
         return view('espace_admin.gestion_utilisateur', compact('utilisateurs'));
     }
 
@@ -24,9 +24,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(StoreUserRequest $request)
     {
-        //
+
     }
 
     /**
@@ -64,6 +64,6 @@ class UserController extends Controller
     {
         
         User::destroy($id);
-        return redirect()->route('Accueil');
+        return redirect()->route('gestion_utilisateur');
     }
 }

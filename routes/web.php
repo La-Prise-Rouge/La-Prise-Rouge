@@ -148,6 +148,7 @@ Route::get('creation-photo',
 // Route Administration
 Route::get('/espace_admin/dashboard', [UserController::class, 'show_admin'])->name('dashboard');
 Route::get('/espace_admin/gestion_utilisateur', [UserController::class, 'index'])->name('gestion_utilisateur');
+
 //Route du formulaire d'ajout photo
 Route::post('validation-creation-photo',
     [PhotoController::class,'store']
@@ -158,3 +159,10 @@ Route::delete('suppression-photo/{id}',
     [PhotoController::class,'destroy']
     )->name('suppression-photo');   //->middleware('auth')->middleware('IsAdmin')
 
+// Routes User
+Route::delete('suppression-user/{id}',
+    [UserController::class,'destroy']
+    )->name('suppression-user');
+Route::post('creation-user',
+    [UserController::class,'create']
+    )->name('creation-user');
