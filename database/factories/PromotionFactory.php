@@ -15,21 +15,8 @@ class PromotionFactory extends Factory
      */
     public function definition()
     {
-        $libelle = [
-            'SIO',
-            'ASI',
-            'FED',
-            'AM',
-            'CGO',
-            'PMI',
-            'SP3S',
-            'NRC',
-            'TC',
-            'CI',
-            'DCG'
-        ];
         return [
-            'libelle'=> Arr::random($libelle),
+            'libelle'=> $this->faker->word(),
             'annee' => $this->faker-> year(now()),
             'type'=> rand(1, 2)
         ];
