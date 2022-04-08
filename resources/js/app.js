@@ -42,4 +42,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     })
 
+    // Récupération des composants graphique pour la génération de mdp
+    var $button_genere_mdp = document.getElementById('button_genere_mdp');
+    var $champ_mdp = document.getElementById('champ_mdp');
+
+    // Fonction d'évenement au client du bouton de gen
+    $button_genere_mdp.addEventListener('click', async () => {
+        // Call à l'API
+        const responseHTTP = await fetch('https://api.motdepasse.xyz/create/?include_digits&include_lowercase&password_length=32&quantity=1');
+        // Récupéraiton du JSON de la reponse de l'API
+        const reponseJSON = await responseHTTP.json();
+        console.log($champ_mdp);
+
+        console.log(reponseJSON.passwords[0]);
+        $champ_mdp.value = reponseJSON.passwords[0];
+    })
+
+
 })

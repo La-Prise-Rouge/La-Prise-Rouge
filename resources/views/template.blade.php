@@ -7,12 +7,12 @@
 
         {{-- Titre --}}
         <title>@yield('Titre')</title>
-        <link rel="icon" type="image/ico" href="{{ asset('storage/goute de sang.ico') }}"/>
+        <link rel="icon" type="image/ico" href="/la-prise-rouge/public/storage/goute_de_sang.ico"/>
 
         {{-- Style --}}
         <link href="{{ asset('css/app.css') }}" rel='stylesheet'>
         <script src="{{ asset('js/app.js') }}"></script>
-        <link rel="stylesheet" href="../node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+        <link rel="stylesheet" href="/la-prise-rouge/node_modules/@glidejs/glide/dist/css/glide.core.min.css">
         <script src="/la-prise-rouge/node_modules/@glidejs/glide/dist/glide.min.js"></script>
         <script src="/la-prise-rouge/node_modules/tw-elements/dist/js/index.min.js"></script>
 
@@ -68,61 +68,6 @@
                 md:bg-transparent
                 md:text-black md:font-normal"
                 id="menu_nav">
-
-                {{-- Direction Accueil --}}
-                <a href="#"
-                    class="flex
-                    w-full h-full
-                    items-center justify-center
-                    hover:bg-red-600
-                    hover:text-white hover:font-semibold
-                    transition-all">
-                    Accueil
-                </a>
-
-                {{-- Direction FAQ --}}
-                <a href="#"
-                    class="flex
-                    w-full h-full
-                    items-center justify-center
-                    hover:bg-red-600
-                    hover:text-white hover:font-semibold
-                    transition-all">
-                    Informations
-                </a>
-
-                {{-- Direction Evenement en cours --}}
-                <a href="#"
-                    class="flex
-                    w-full h-full
-                    items-center justify-center
-                    hover:bg-red-600
-                    hover:text-white hover:font-semibold
-                    transition-all">
-                    Evenement
-                </a>
-
-                {{-- Direction Localisation --}}
-                <a href="#"
-                    class="flex
-                    w-full h-full
-                    items-center justify-center
-                    hover:bg-red-600
-                    hover:text-white hover:font-semibold
-                    transition-all">
-                    Nous Trouver
-                </a>
-
-                    {{-- Direction Localisation --}}
-                    <a href="#"
-                    class="flex
-                    w-full h-full
-                    items-center justify-center
-                    hover:bg-red-600
-                    hover:text-white hover:font-semibold
-                    transition-all">
-                    Partenaires
-                </a>
                 @yield('menu_navigation')
 
             </div>
