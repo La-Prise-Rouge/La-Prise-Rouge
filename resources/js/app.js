@@ -1,3 +1,5 @@
+const { forEach } = require("lodash");
+
 document.addEventListener('DOMContentLoaded', (event) => {
 
     // Affichage du menu Utilisateur
@@ -8,8 +10,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Fonction d'évenement au click
         $buttonUser.addEventListener('click', () => {
             $formUser.classList.toggle('hidden');
-        })   
-    } 
+        })
+    }
 
     // Affichage du menu Navigation
     var $button_navigation = document.getElementById('boutton_nav');
@@ -30,4 +32,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             $ouvrir_nav.style.display = 'flex';
         }
     })
+
+    var $button_menu = document.getElementById('button_menu');
+    $button_menu.addEventListener('click', () => {
+        var $txt_button = document.getElementsByClassName('txt_button');
+
+        for (let button of $txt_button) {
+            button.classList.toggle('hidden');
+        }
+    })
+
 })

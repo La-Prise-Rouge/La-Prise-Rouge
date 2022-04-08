@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\PartenaireController;
 use App\Http\Controllers\FAQController;
@@ -144,6 +145,9 @@ Route::get('creation-photo',
     [PhotoController::class,'create']
     )->name('creation-photo');   //->middleware('auth')->middleware('IsAdmin')
 
+// Route Administration
+Route::get('/espace_admin/dashboard', [UserController::class, 'show_admin'])->name('dashboard');
+Route::get('/espace_admin/gestion_utilisateur', [UserController::class, 'index'])->name('gestion_utilisateur');
 //Route du formulaire d'ajout photo
 Route::post('validation-creation-photo',
     [PhotoController::class,'store']
