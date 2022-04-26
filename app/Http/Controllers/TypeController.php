@@ -15,7 +15,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::paginate(10);
+        return view('Accueil')->with('types', $types);
     }
 
     /**
@@ -45,9 +46,11 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Type $type)
+    public function show($id)
     {
-        //
+        //Permet de visualiser un type
+        $type = Type::find($id);
+        return view('Accueil')->with('type', $type);
     }
 
     /**
@@ -79,8 +82,9 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy($id)
     {
-        //
+        Type::destroy($id);
+        return redirect()->back();
     }
 }
