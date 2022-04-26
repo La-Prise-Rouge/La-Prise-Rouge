@@ -10,15 +10,21 @@ Administration | Gestion Utilisateur
         w-full h-full
         bg-slate-200">
 
+    @if ($errors->any())
+        <h1>{{ $errors->first() }}</h1>
+    @endif
+
+    @if (session('success'))
+        <h1>{{ session('success') }}</h1>
+    @endif
+
     <div class="flex flex-row w-full
             justify-around
             mt-10">
-        {{-- Formulaire d'import des utilisateurs depuis un CSV --}}
-        <form action="{{ route('create_depuis_csv') }}" method="POST">
-            @csrf
 
-            {{-- Bouton d'import du csv --}}
-            <label for="button_import_csv" class="flex justify-center items-center
+        {{-- Formulaire d'import des utilisateurs depuis un CSV --}}
+        {{-- Bouton d'import du csv --}}
+        <label for="button_import_csv" class="flex justify-center items-center
                     h-16
                     px-10
                     mb-4
@@ -27,114 +33,68 @@ Administration | Gestion Utilisateur
                     bg-green-600 hover:bg-green-500
                     shadow-md shadow-zinc-400
                     transition-all">Importer par csv</label>
-            <input type="file" class="hidden" id="button_import_csv" data-bs-toggle="modal"
-                data-bs-target="#modal_creation_depuis_csv" />
+        <input type="button" class="hidden" id="button_import_csv" data-bs-toggle="modal"
+            data-bs-target="#modal_creation_depuis_csv" />
 
-            <!-- Modal de Confirmation de création d'utilisateur depuis un csv -->
-            <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                id="modal_creation_depuis_csv" tabindex="-1" aria-hidden="true">
+        <!-- Modal de Confirmation de création d'utilisateur depuis un csv -->
+        <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+            id="modal_creation_depuis_csv" tabindex="-1" aria-hidden="true">
 
-                {{-- Boite de dialogue du Modal de création depuis un csv --}}
-                <div class="modal-dialog relative w-auto pointer-events-none">
-                    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+            {{-- Boite de dialogue du Modal de création depuis un csv --}}
+            <div class="modal-dialog relative w-auto pointer-events-none">
+                <div
+                    class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
 
-                        {{-- En-tête du Modal --}}
-                        <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                    {{-- En-tête du Modal --}}
+                    <div
+                        class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
 
-                            {{-- Titre du Modal --}}
-                            <h5 class="text-xl font-medium leading-normal text-gray-800" id="modal_creationLabel">Creation
-                                d'un utilisateur</h5>
+                        {{-- Titre du Modal --}}
+                        <h5 class="text-xl font-medium leading-normal text-gray-800" id="modal_creationLabel">Import
+                            des utilisateurs depuis un csv</h5>
 
-                            {{-- Bouton de fermeture --}}
-                            <button type="button"
-                                class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                                data-bs-dismiss="modal" aria-label="Close">
-                            </button>
+                        {{-- Bouton de fermeture --}}
+                        <button type="button"
+                            class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        </button>
 
+                    </div>
+
+                    <form action="{{ route('create_depuis_csv') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        {{-- Champs --}}
+                        <div class="w-full h-full
+                            p-4">
+                            <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                                <label class="w-1/2 text-center" for="exampleInputFile">Fichier CSV : </label>
+                                <input name="url" type="file" id="exampleInputFile">
+                            </div>
                         </div>
 
-                        {{-- S'il a déjà des promotions de créées --}}
-                        @if ($promotions->count() > 0)
+                        {{-- Annulation et Confirmation --}}
+                        <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
 
-                            {{-- Champs --}}
-                            <div class="w-full h-full
-                            p-4">
-                                {{-- Champ du Nom --}}
-                                <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
-                                    <label class="w-1/2 text-center">Nom : </label>
-                                    <input name="name" type="text" class="w-1/2
-                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
-                                </div>
+                            {{-- Annulation --}}
+                            <button type="button"
+                                class="px-4 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                                data-bs-dismiss="modal">
+                                Annuler
+                            </button>
 
-                                {{-- Champ de l'Email --}}
-                                <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
-                                    <label class="w-1/2 text-center">Mail : </label>
-                                    <input name="email" type="text" class="w-1/2
-                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
-                                </div>
+                            {{-- Confirmation --}}
+                            <button type="submit"
+                                class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                                >Je valide</button>
+                        </div>
+                    </form>
 
-                                {{-- Champ du mot de passe --}}
-                                <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
-                                    <label class="w-1/2 text-center">Mot de passe : </label>
-                                    <div class="flex flex-row
-                                    w-1/2">
-                                        <input name="password" type="text"
-                                            class="w-3/5 md:w-auto rounded-l-lg focus:ring-1 focus:ring-zinc-800"
-                                            id="champ_mdp">
-
-                                        {{-- Bouton déclenchant une interrogation d'API de génération de mot de passe --}}
-                                        <label class="flex items-center
-                                        w-10 p-2
-                                        rounded-r-lg font-semibold text-white
-                                        bg-green-600 hover:bg-green-500
-                                        shadow-md shadow-zinc-400
-                                        transition-all" id="button_genere_mdp">
-                                            <ion-icon name="key-sharp" class="text-white text-lg" />
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            {{-- Annulation et Confirmation --}}
-                            <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-
-                                {{-- Annulation --}}
-                                <button type="button"
-                                    class="px-4 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
-                                    data-bs-dismiss="modal">
-                                    Annuler
-                                </button>
-
-                                {{-- Confirmation --}}
-                                <input type="submit"
-                                    class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                                    value="Je confirme" />
-                            </div>
-
-                        {{-- Sinon, S'il n'y a aucune promotion créée --}}
-                        @else
-                            <div class="p-6">
-                                {{-- Message d'erreur et d'instruction --}}
-                                <h2 class="text-red-600 text-xl text-center font-extrabold mb-6">Aucune promotion n'est déclarée
-                                </h2>
-                                <p class="text-center text-lg font-semibold">
-                                    Impossible de créer un utilisateur sans promotion.
-                                    <br>
-                                    Importez une liste d'élèves depuis la gestion d'utilisateurs !
-                                </p>
-                            </div>
-                        @endif
-                    </div>
                 </div>
             </div>
-        </form>
+        </div>
         <button class="
                 h-16
                 px-10
@@ -200,9 +160,9 @@ Administration | Gestion Utilisateur
                         non
                         @endif
                     </td>
-                    {{-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {{ $utilisateur->Promotion->libelle }}
-                    </td> --}}
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {{ $utilisateur->Promotion->Type->libelle }}
+                    </td>
                     <td class="flex justify-center text-sm text-gray-900 font-light  whitespace-nowrap">
                         <button class="px-4 py-2 m-2
                                     bg-gray-300 hover:bg-red-600
@@ -328,7 +288,7 @@ Administration | Gestion Utilisateur
                         data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                @if ($promotions->count() > 0)
+                @if ($types->count() > 0)
                 <form action="{{ route('creation-user') }}" method="POST">
                     @csrf
                     {{-- Champs --}}

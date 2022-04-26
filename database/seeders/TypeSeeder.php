@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Type;
 
 class TypeSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Type::factory()->times(1)->create();
     }
 }

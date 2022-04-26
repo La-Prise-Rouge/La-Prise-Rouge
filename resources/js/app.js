@@ -52,11 +52,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const responseHTTP = await fetch('https://api.motdepasse.xyz/create/?include_digits&include_lowercase&password_length=32&quantity=1');
         // Récupéraiton du JSON de la reponse de l'API
         const reponseJSON = await responseHTTP.json();
-        console.log($champ_mdp);
 
-        console.log(reponseJSON.passwords[0]);
         $champ_mdp.value = reponseJSON.passwords[0];
     })
-
-
 })

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Promotion;
+use App\Models\Type;
 use Illuminate\Http\Request;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -16,9 +18,9 @@ class UserController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $promotions = Promotion::all();
+        $types = Type::where('libelle', '<>', "ADMIN");
         $utilisateurs = User::paginate(7);
-        return view('espace_admin.gestion_utilisateur', compact(['utilisateurs', 'promotions']));
+        return view('espace_admin.gestion_utilisateur', compact(['utilisateurs', 'types']));
     }
 
     /**
@@ -48,9 +50,16 @@ class UserController extends Controller
             //get file extension
             $extension = $request->file('url')->getClientOriginalExtension();
 
-            //filename to store
-            $filenametostore = $filename.'_'.time().'.'.$extension;
+            if ($extension != "csv") {
+                return redirect()->back()->withErrors("Pas la bonne extension");
+            }
+
+
+
+            Excel::import(new UsersImport, request()->file('url'));
+            return redirect()->back()->with('success','Data Imported Successfully');
         }
+        return redirect()->back()->withErrors("Pas de fichier sélectionné");
     }
 
     /**

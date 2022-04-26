@@ -145,10 +145,6 @@ Route::get('creation-photo',
     [PhotoController::class,'create']
     )->name('creation-photo');   //->middleware('auth')->middleware('IsAdmin')
 
-// Route Administration
-Route::get('/espace_admin/dashboard', [UserController::class, 'show_admin'])->name('dashboard');
-Route::get('/espace_admin/gestion_utilisateur', [UserController::class, 'index'])->name('gestion_utilisateur');
-
 //Route du formulaire d'ajout photo
 Route::post('validation-creation-photo',
     [PhotoController::class,'store']
@@ -158,6 +154,12 @@ Route::post('validation-creation-photo',
 Route::delete('suppression-photo/{id}',
     [PhotoController::class,'destroy']
     )->name('suppression-photo');   //->middleware('auth')->middleware('IsAdmin')
+
+
+
+// Route Administration
+Route::get('/espace_admin/dashboard', [UserController::class, 'show_admin'])->name('dashboard');
+Route::get('/espace_admin/gestion_utilisateur', [UserController::class, 'index'])->name('gestion_utilisateur');
 
 // Routes User
 Route::delete('suppression-user/{id}',
@@ -169,3 +171,6 @@ Route::post('creation-user',
 Route::post('create_depuis_csv',
     [UserController::class,'create_depuis_csv']
     )->name('create_depuis_csv');
+Route::post('import_csv',
+    [UserController::class, 'import_csv']
+    )->name('import_csv');
