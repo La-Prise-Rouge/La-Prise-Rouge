@@ -98,7 +98,7 @@
                 mt-16
                 rounded-b-lg
                 bg-white
-                shadow-xl shadow-gray-600">
+                shadow-xl shadow-gray-600 z-50">
 
                 <div class="
                     flex flex-col

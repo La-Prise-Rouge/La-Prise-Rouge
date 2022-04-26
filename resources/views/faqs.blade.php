@@ -140,30 +140,30 @@
 </div>
 
 {{-- Liste des FAQs de la page --}}
-<div class="m-8">
+<div class="my-10 m-8">
     <div>
         {{-- FAQs sous la forme d'accordeon --}}
-        <div class="accordion">
+        <div class="accordion px-10">
             {{-- Si on a au moins une FAQ --}}
             @if ($faqs->count() > 0)
 
                 {{-- Alors on affiche chaque FAQ sous la forme d'un Accordeon --}}
                 @foreach ($faqs as $key=>$faq)
 
-                    <div class="accordion-item bg-white border border-gray-200">
+                    <div class="accordion-item px-6 bg-white border border-gray-200">
 
                         <h2 class="accordion-header mb-0" id="heading{{ $key }}">
 
                             <button class="accordion-button
-                                                        collapsed relative
-                                                        flex
-                                                        w-full
-                                                        items-center
-                                                        py-4 px-5
-                                                        text-base text-gray-800 text-left
-                                                        bg-white
-                                                        border-0 rounded-none
-                                                        transition focus:outline-none" type="button" data-bs-toggle="collapse"
+                                        collapsed relative
+                                        flex
+                                        w-full
+                                        items-center
+                                        py-4 px-5
+                                        text-base text-gray-800 text-left
+                                        bg-white
+                                        border-0 rounded-none
+                                        transition focus:outline-none" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse{{ $key }}" aria-expanded="false" aria-controls="collapse{{ $key }}">
                                 {{ $faq->question }}
                             </button>
@@ -189,7 +189,8 @@
 {{-- Bouton de contact --}}
 <div class="flex flex-col
             w-full
-            items-center">
+            items-center
+            mb-10">
     <p>Pas de réponse ?</p>
     <a href="#"
         class="p-2

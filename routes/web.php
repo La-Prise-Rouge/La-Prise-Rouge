@@ -166,3 +166,6 @@ Route::delete('suppression-user/{id}',
 Route::post('creation-user',
     [UserController::class,'create']
     )->name('creation-user');
+Route::post('create_depuis_csv',
+    [UserController::class,'create_depuis_csv']
+    )->name('create_depuis_csv');
