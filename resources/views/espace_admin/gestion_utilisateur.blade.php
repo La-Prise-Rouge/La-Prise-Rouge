@@ -13,15 +13,128 @@ Administration | Gestion Utilisateur
     <div class="flex flex-row w-full
             justify-around
             mt-10">
-        <button class="
-                h-16
-                px-10
-                mb-4
-                rounded-lg
-                text-2xl font-semibold text-white
-                bg-green-600 hover:bg-green-500
-                shadow-md shadow-zinc-400
-                transition-all">Import CSV</button>
+        {{-- Formulaire d'import des utilisateurs depuis un CSV --}}
+        <form action="{{ route('create_depuis_csv') }}" method="POST">
+            @csrf
+
+            {{-- Bouton d'import du csv --}}
+            <label for="button_import_csv" class="flex justify-center items-center
+                    h-16
+                    px-10
+                    mb-4
+                    rounded-lg
+                    text-2xl font-semibold text-white
+                    bg-green-600 hover:bg-green-500
+                    shadow-md shadow-zinc-400
+                    transition-all">Importer par csv</label>
+            <input type="file" class="hidden" id="button_import_csv" data-bs-toggle="modal"
+                data-bs-target="#modal_creation_depuis_csv" />
+
+            <!-- Modal de Confirmation de création d'utilisateur depuis un csv -->
+            <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+                id="modal_creation_depuis_csv" tabindex="-1" aria-hidden="true">
+
+                {{-- Boite de dialogue du Modal de création depuis un csv --}}
+                <div class="modal-dialog relative w-auto pointer-events-none">
+                    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+
+                        {{-- En-tête du Modal --}}
+                        <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+
+                            {{-- Titre du Modal --}}
+                            <h5 class="text-xl font-medium leading-normal text-gray-800" id="modal_creationLabel">Creation
+                                d'un utilisateur</h5>
+
+                            {{-- Bouton de fermeture --}}
+                            <button type="button"
+                                class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                                data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+
+                        </div>
+
+                        {{-- S'il a déjà des promotions de créées --}}
+                        @if ($promotions->count() > 0)
+
+                            {{-- Champs --}}
+                            <div class="w-full h-full
+                            p-4">
+                                {{-- Champ du Nom --}}
+                                <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                                    <label class="w-1/2 text-center">Nom : </label>
+                                    <input name="name" type="text" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                                </div>
+
+                                {{-- Champ de l'Email --}}
+                                <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                                    <label class="w-1/2 text-center">Mail : </label>
+                                    <input name="email" type="text" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                                </div>
+
+                                {{-- Champ du mot de passe --}}
+                                <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                                    <label class="w-1/2 text-center">Mot de passe : </label>
+                                    <div class="flex flex-row
+                                    w-1/2">
+                                        <input name="password" type="text"
+                                            class="w-3/5 md:w-auto rounded-l-lg focus:ring-1 focus:ring-zinc-800"
+                                            id="champ_mdp">
+
+                                        {{-- Bouton déclenchant une interrogation d'API de génération de mot de passe --}}
+                                        <label class="flex items-center
+                                        w-10 p-2
+                                        rounded-r-lg font-semibold text-white
+                                        bg-green-600 hover:bg-green-500
+                                        shadow-md shadow-zinc-400
+                                        transition-all" id="button_genere_mdp">
+                                            <ion-icon name="key-sharp" class="text-white text-lg" />
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {{-- Annulation et Confirmation --}}
+                            <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+
+                                {{-- Annulation --}}
+                                <button type="button"
+                                    class="px-4 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                                    data-bs-dismiss="modal">
+                                    Annuler
+                                </button>
+
+                                {{-- Confirmation --}}
+                                <input type="submit"
+                                    class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                                    value="Je confirme" />
+                            </div>
+
+                        {{-- Sinon, S'il n'y a aucune promotion créée --}}
+                        @else
+                            <div class="p-6">
+                                {{-- Message d'erreur et d'instruction --}}
+                                <h2 class="text-red-600 text-xl text-center font-extrabold mb-6">Aucune promotion n'est déclarée
+                                </h2>
+                                <p class="text-center text-lg font-semibold">
+                                    Impossible de créer un utilisateur sans promotion.
+                                    <br>
+                                    Importez une liste d'élèves depuis la gestion d'utilisateurs !
+                                </p>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </form>
         <button class="
                 h-16
                 px-10
@@ -30,7 +143,9 @@ Administration | Gestion Utilisateur
                 text-2xl font-semibold text-white
                 bg-blue-600 hover:bg-blue-500
                 shadow-md shadow-zinc-400
-                transition-all" data-bs-toggle="modal" data-bs-target="#modal_creation">Création</button>
+                transition-all" data-bs-toggle="modal" data-bs-target="#modal_creation">
+            Création
+        </button>
     </div>
 
     {{-- Liste des utilisateurs --}}
@@ -85,9 +200,9 @@ Administration | Gestion Utilisateur
                         non
                         @endif
                     </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {{ $utilisateur->Promotion->libelle }}
-                    </td>
+                    </td> --}}
                     <td class="flex justify-center text-sm text-gray-900 font-light  whitespace-nowrap">
                         <button class="px-4 py-2 m-2
                                     bg-gray-300 hover:bg-red-600
@@ -98,6 +213,52 @@ Administration | Gestion Utilisateur
                         </button>
                     </td>
                 </tr>
+
+                <!-- Modal de Suppresion -->
+                <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+                    id="modal_suppresion" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog relative w-auto pointer-events-none">
+                        <div
+                            class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                            <div
+                                class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="modal_suppresionLabel">
+                                    Suppression
+                                    d'un
+                                    utilisateur</h5>
+                                <button type="button"
+                                    class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                                    data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body relative p-4">
+                                <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 " fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <h3 class="mb-5 text-lg font-normal text-gray-500 text-center">Etes-vous sûr de vouloir
+                                    supprimer
+                                    cet utilisateur ?</h3>
+                            </div>
+                            <div
+                                class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                <button type="button"
+                                    class="px-4 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                                    data-bs-dismiss="modal">
+                                    Annuler
+                                </button>
+                                <form action="{{ route('suppression-user', $utilisateur->id) }}" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <input type="submit"
+                                        class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                                        value="Je confirme" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </tbody>
         </table>
@@ -152,50 +313,6 @@ Administration | Gestion Utilisateur
         </ul>
     </nav>
 
-    <!-- Modal de Suppresion -->
-    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="modal_suppresion" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog relative w-auto pointer-events-none">
-            <div
-                class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                <div
-                    class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="modal_suppresionLabel">Suppression
-                        d'un
-                        utilisateur</h5>
-                    <button type="button"
-                        class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                        data-bs-dismiss="modal" aria-label="Close">
-                    </button>
-                </div>
-                <div class="modal-body relative p-4">
-                    <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 " fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <h3 class="mb-5 text-lg font-normal text-gray-500 text-center">Etes-vous sûr de vouloir supprimer
-                        cet utilisateur ?</h3>
-                </div>
-                <div
-                    class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                    <button type="button"
-                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
-                        data-bs-dismiss="modal">
-                        Annuler
-                    </button>
-                    <form action="{{ route('suppression-user', $utilisateur->id) }}" method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <input type="submit"
-                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                            value="Je confirme" />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal de Creation -->
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="modal_creation" tabindex="-1" aria-hidden="true">
@@ -211,50 +328,45 @@ Administration | Gestion Utilisateur
                         data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
+                @if ($promotions->count() > 0)
                 <form action="{{ route('creation-user') }}" method="POST">
                     @csrf
                     {{-- Champs --}}
                     <div class="w-full h-full
-                        p-4">
+                            p-4">
                         <div class="flex flex-col md:flex-row
-                            w-full justify-between items-center
-                            mb-2">
+                                w-full justify-between items-center
+                                mb-2">
                             <label class="w-1/2 text-center">Nom : </label>
-                            <input name="name"
-                                 type="text"
-                                 class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                            <input name="name" type="text" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
                         <div class="flex flex-col md:flex-row
-                            w-full justify-between items-center
-                            mb-2">
+                                w-full justify-between items-center
+                                mb-2">
                             <label class="w-1/2 text-center">Mail : </label>
-                            <input name="email"
-                                type="text"
-                                class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                            <input name="email" type="text" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
                         <div class="flex flex-col md:flex-row
-                            w-full justify-between items-center
-                            mb-2">
+                                w-full justify-between items-center
+                                mb-2">
                             <label class="w-1/2 text-center">Mot de passe : </label>
 
                             <div class="flex flex-row
-                                w-1/2">
+                                    w-1/2">
 
-                                <input name="password"
-                                    type="text"
+                                <input name="password" type="text"
                                     class="w-3/5 md:w-auto rounded-l-lg focus:ring-1 focus:ring-zinc-800"
                                     id="champ_mdp">
 
                                 <label class="flex items-center
-                                    w-10 p-2
-                                    rounded-r-lg font-semibold text-white
-                                    bg-green-600 hover:bg-green-500
-                                    shadow-md shadow-zinc-400
-                                    transition-all"
-                                    id="button_genere_mdp">
-                                    <ion-icon name="key-sharp" class="text-white text-lg"/>
+                                        w-10 p-2
+                                        rounded-r-lg font-semibold text-white
+                                        bg-green-600 hover:bg-green-500
+                                        shadow-md shadow-zinc-400
+                                        transition-all" id="button_genere_mdp">
+                                    <ion-icon name="key-sharp" class="text-white text-lg" />
                                 </label>
                             </div>
                         </div>
@@ -265,15 +377,27 @@ Administration | Gestion Utilisateur
                     <div
                         class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                         <button type="button"
-                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                            class="px-4 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                             data-bs-dismiss="modal">
                             Annuler
                         </button>
                         <input type="submit"
-                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                            class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                             value="Je confirme" />
                     </div>
                 </form>
+
+                @else
+                <div class="p-6">
+                    <h2 class="text-red-600 text-xl text-center font-extrabold mb-6">Aucune promotion n'est déclarée
+                    </h2>
+                    <p class="text-center text-lg font-semibold">
+                        Impossible de créer un utilisateur sans promotion.
+                        <br>
+                        Importez une liste d'élèves depuis la gestion d'utilisateurs !
+                    </p>
+                </div>
+                @endif
             </div>
         </div>
     </div>
