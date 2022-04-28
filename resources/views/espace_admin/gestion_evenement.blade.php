@@ -64,40 +64,59 @@
                         <div class="flex flex-col md:flex-row
                                 w-full justify-between items-center
                                 mb-2">
-                            <label class="w-1/2 text-center">Nom : </label>
-                            <input name="name" type="text" class="w-1/2
+                            <label class="w-1/2 text-center">Libelle de L'Évenement : </label>
+                            <input name="libelle" type="text" class="w-1/2
                                         rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
                         <div class="flex flex-col md:flex-row
                                 w-full justify-between items-center
                                 mb-2">
-                            <label class="w-1/2 text-center">Mail : </label>
-                            <input name="email" type="text" class="w-1/2
+                            <label class="w-1/2 text-center">Date de début : </label>
+                            <input name="date_debut" type="date" class="w-1/2
                                         rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
                         <div class="flex flex-col md:flex-row
                                 w-full justify-between items-center
                                 mb-2">
-                            <label class="w-1/2 text-center">Mot de passe : </label>
-
-                            <div class="flex flex-row
-                                    w-1/2">
-
-                                <input name="password" type="text"
-                                    class="w-3/5 md:w-auto rounded-l-lg focus:ring-1 focus:ring-zinc-800"
-                                    id="champ_mdp">
-
-                                <label class="flex items-center
-                                        w-10 p-2
-                                        rounded-r-lg font-semibold text-white
-                                        bg-green-600 hover:bg-green-500
-                                        shadow-md shadow-zinc-400
-                                        transition-all" id="button_genere_mdp">
-                                    <ion-icon name="key-sharp" class="text-white text-lg" />
-                                </label>
-                            </div>
+                            <label class="w-1/2 text-center">Date de fin : </label>
+                            <input name="date_fin" type="date" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
-
+                        <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                            <label class="w-1/2 text-center">Lieu de L'Évenement : </label>
+                            <input name="lieu" type="text" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                        </div>
+                        <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                            <label class="w-1/2 text-center">Date d'ouverture des inscriptions : </label>
+                            <input name="date_inscription" type="date" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                        </div>
+                        <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                            <label class="w-1/2 text-center">Date de fin des inscriptions : </label>
+                            <input name="date_fin_inscription" type="date" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                        </div>
+                        <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                            <label class="w-1/2 text-center">Date de réunion Primo donnant : </label>
+                            <input name="date_reunion_primo" type="date" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                        </div>
+                        <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                            <label class="w-1/2 text-center">Durée de passage : </label>
+                            <input name="duree_passage" type="integer" class="w-1/2
+                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                        </div>
                     </div>
 
                     {{-- Annulation et Confirmation --}}
@@ -137,42 +156,63 @@
                     {{-- Champs --}}
                     <div class="w-full h-full
                             p-4">
-                        <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
-                            <label class="w-1/2 text-center">Nom : </label>
-                            <input name="name" type="text" class="w-1/2
-                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
-                            <label class="w-1/2 text-center">Mail : </label>
-                            <input name="email" type="text" class="w-1/2
-                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
-                            <label class="w-1/2 text-center">Mot de passe : </label>
+                            <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Libelle de L'Évenement : </label>
+                        <input name="libelle" type="text" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
+                    <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Date de début : </label>
+                        <input name="date_debut" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
+                    <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Date de fin : </label>
+                        <input name="date_fin" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
+                    <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Lieu de L'Évenement : </label>
+                        <input name="lieu" type="text" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
+                    <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Date d'ouverture des inscriptions : </label>
+                        <input name="date_inscription" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
+                    <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Date de fin des inscriptions : </label>
+                        <input name="date_fin_inscription" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
+                    <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Date de réunion Primo donnant : </label>
+                        <input name="date_reunion_primo" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
+                    <div class="flex flex-col md:flex-row
+                            w-full justify-between items-center
+                            mb-2">
+                        <label class="w-1/2 text-center">Durée de passage : </label>
+                        <input name="duree_passage" type="integer" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
+                    </div>
 
-                            <div class="flex flex-row
-                                    w-1/2">
-
-                                <input name="password" type="text"
-                                    class="w-3/5 md:w-auto rounded-l-lg focus:ring-1 focus:ring-zinc-800"
-                                    id="champ_mdp">
-
-                                <label class="flex items-center
-                                        w-10 p-2
-                                        rounded-r-lg font-semibold text-white
-                                        bg-green-600 hover:bg-green-500
-                                        shadow-md shadow-zinc-400
-                                        transition-all" id="button_genere_mdp">
-                                    <ion-icon name="key-sharp" class="text-white text-lg" />
-                                </label>
-                            </div>
-                        </div>
                     </div>
 
                     {{-- Annulation et Confirmation --}}
