@@ -18,7 +18,7 @@ class EvenementController extends Controller
     public function index()
     {
         $evenements = Evenement::paginate(10);
-        return view('Evenements')->with('evenements', $evenements);
+        return view('espace_admin.gestion_evenement', compact(['evenements']));
     }
 
     /**
