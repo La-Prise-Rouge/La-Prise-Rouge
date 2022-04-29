@@ -104,11 +104,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
           case 5:
             reponseJSON = _context.sent;
-            console.log($champ_mdp);
-            console.log(reponseJSON.passwords[0]);
             $champ_mdp.value = reponseJSON.passwords[0];
 
-          case 9:
+          case 7:
           case "end":
             return _context.stop();
         }

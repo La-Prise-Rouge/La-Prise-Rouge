@@ -31,6 +31,10 @@ class UsersImport implements ToModel
     */
     public function model(array $row)
     {
+        if ($row[1] == "NOM") {
+            return null;
+        }
+
         $type = Type::where("libelle", $row[3])->first();
 
         if ($type == null) {
@@ -39,19 +43,21 @@ class UsersImport implements ToModel
             $type->libelle = $row[3];
             $type->save();
 
-        }else {
+        }
 
-            $promotion = Promotion::where('type_id', $type->id)->first();
-            if ($promotion == null) {
+        $promotion = Promotion::where('annee', '=', now()->year)
+                                ->where('type_id', '=', $type->id)
+                                ->first();
+        if ($promotion == null) {
+            $promotion = new Promotion;
+            $promotion->annee = now()->year;
+            $promotion->type = 1;
+            $promotion->type_id = $type->id;
+            $promotion->save();
+        }
 
-                $promotion = new Promotion;
-                $promotion->annee = now()->year;
-                $promotion->type = 1;
-                $promotion->type_id = $type->id;
-                $promotion->save();
-
-            }
-
+        $user = User::where('email', '=', $row[4])->first();
+        if ($user == null) {
             $user = new User;
             $user->name = $row[1];
             $user->email = $row[4];
@@ -61,7 +67,7 @@ class UsersImport implements ToModel
             $user->promotion_id = $promotion->id;
 
             return $user;
-
         }
+        return null;
     }
 }

@@ -18,7 +18,7 @@ class UserController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $types = Type::where('libelle', '<>', "ADMIN");
+        $types = Type::where('libelle', '<>', "ADMIN")->get();
         $utilisateurs = User::paginate(7);
         return view('espace_admin.gestion_utilisateur', compact(['utilisateurs', 'types']));
     }
@@ -54,10 +54,8 @@ class UserController extends Controller
                 return redirect()->back()->withErrors("Pas la bonne extension");
             }
 
-
-
             Excel::import(new UsersImport, request()->file('url'));
-            return redirect()->back()->with('success','Data Imported Successfully');
+            return redirect()->back()->with('success','Utilisateurs importés avec Succès');
         }
         return redirect()->back()->withErrors("Pas de fichier sélectionné");
     }
