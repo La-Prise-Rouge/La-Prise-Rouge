@@ -58,7 +58,7 @@
                 <ion-icon name="people" class="text-2xl"></ion-icon>
                 <p class="text-xl ml-2 hover:scale-105 link link-underline txt_button">Utilisateurs</p>
             </a>
-            <a href=""  class="flex flex-row
+            <a href="{{ route('gestion_evenement') }}"  class="flex flex-row
                 my-10">
                 <ion-icon name="calendar" class="text-2xl"></ion-icon>
                 <p class="text-xl ml-2 hover:scale-105 link link-underline txt_button">Evenements</p>

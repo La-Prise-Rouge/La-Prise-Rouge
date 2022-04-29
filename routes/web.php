@@ -160,6 +160,7 @@ Route::delete('suppression-photo/{id}',
 // Route Administration
 Route::get('/espace_admin/dashboard', [UserController::class, 'show_admin'])->name('dashboard');
 Route::get('/espace_admin/gestion_utilisateur', [UserController::class, 'index'])->name('gestion_utilisateur');
+Route::get('/espace_admin/gestion_evenement', [EvenementController::class, 'index'])->name('gestion_evenement');
 
 // Routes User
 Route::delete('suppression-user/{id}',
@@ -174,3 +175,15 @@ Route::post('create_depuis_csv',
 Route::post('import_csv',
     [UserController::class, 'import_csv']
     )->name('import_csv');
+
+
+// Routes Evenement
+Route::delete('suppression-evenement/{id}',
+    [EvenementController::class,'destroy']
+    )->name('suppression-evenement');
+Route::post('creation-evenement',
+    [EvenementController::class,'create']
+    )->name('creation-evenement');
+Route::post('modification-evenement',   ///{id}
+    [EvenementController::class,'update']
+    )->name('modification-evenement');
