@@ -62,7 +62,7 @@ Administration | Gestion Évenements
                 <form action="{{ route('creation-evenement') }}" method="POST">
                     @csrf
                     {{-- Champs --}}
-                    <div class="w-full h-full
+                    <div class="w-full h-fit
                             p-4">
                         <div class="flex flex-col md:flex-row
                                 w-full justify-between items-center
@@ -117,7 +117,7 @@ Administration | Gestion Évenements
                                 w-full justify-between items-center
                                 mb-2">
                             <label class="w-1/2 text-center">Durée de passage : </label>
-                            <input name="duree_passage" type="integer" class="w-1/2
+                            <input name="duree_passage" type="number" class="w-1/2
                                         rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
                     </div>
@@ -155,7 +155,7 @@ Administration | Gestion Évenements
                         data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <form action="{{ route('modification-evenement') }}" method="POST">
+                <form action="{{ route('modification-evenement', $evnmt->id) }}" method="POST">
                     @csrf
                     {{-- Champs --}}
                     <div class="w-full h-full
@@ -163,59 +163,69 @@ Administration | Gestion Évenements
                         <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Libelle de L'Évenement : </label>
-                            <input name="libelle" type="text" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
+                        <label class="w-1/2 text-center">Libelle de L'Évenement : </label>
+                        <input name="libelle" type="text" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ $evnmt->libelle }}">
+                    </div>
+                    <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Date de début : </label>
-                            <input name="date_debut" type="date" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
+                        <label class="w-1/2 text-center">Date de début : </label>
+                        <input name="date_debut" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ $evnmt->date_debut }}">
+                    </div>
+                    <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Date de fin : </label>
-                            <input name="date_fin" type="date" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
+                        <label class="w-1/2 text-center">Date de fin : </label>
+                        <input name="date_fin" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ $evnmt->date_fin }}">
+                    </div>
+                    <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Lieu de L'Évenement : </label>
-                            <input name="lieu" type="text" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
+                        <label class="w-1/2 text-center">Lieu de L'Évenement : </label>
+                        <input name="lieu" type="text" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ $evnmt->lieu }}">
+                    </div>
+                    <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Date d'ouverture des inscriptions : </label>
-                            <input name="date_inscription" type="date" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
+                        <label class="w-1/2 text-center">Date d'ouverture des inscriptions : </label>
+                        <input name="date_inscription" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ $evnmt->date_inscription }}">
+                    </div>
+                    <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Date de fin des inscriptions : </label>
-                            <input name="date_fin_inscription" type="date" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
+                        <label class="w-1/2 text-center">Date de fin des inscriptions : </label>
+                        <input name="date_fin_inscription" type="date" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ $evnmt->date_fin_inscription }}">
+                    </div>
+                    <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Date de réunion Primo donnant : </label>
-                            <input name="date_reunion_primo" type="date" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
-                        <div class="flex flex-col md:flex-row
+                        <label class="w-1/2 text-center">Jour de réunion Primo donnant : </label>
+                        <input name="date_reunion_primo" type="dateTime-local" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ date("y-m-d h:i", strtotime($evnmt->date_reunion_primo)); }}"
+                                {{-- $evnmt->date_reunion_primo->format("y-m-d h:i") --}}
+                                >
+                    </div>
+                    <div class="flex flex-col md:flex-row
                             w-full justify-between items-center
                             mb-2">
-                            <label class="w-1/2 text-center">Durée de passage : </label>
-                            <input name="duree_passage" type="integer" class="w-1/2
-                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
-                        </div>
+                        <label class="w-1/2 text-center">Durée de passage : </label>
+                        <input name="duree_passage" type="number" class="w-1/2
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800"
+                                value="{{ $evnmt->duree_passage }}">
+                    </div>
 
                     </div>
 
