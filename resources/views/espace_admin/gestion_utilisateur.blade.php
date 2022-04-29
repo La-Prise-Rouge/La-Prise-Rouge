@@ -1,38 +1,42 @@
 @extends('espace_admin.overlay_admin')
 
 @section('fil_arianne')
-Administration | Gestion Utilisateur
+Administration | Gestion Utilisateurs
 @endsection
 
 @section('admin_contenu')
 
 <section class="flex flex-col
-        w-full h-full
-        bg-slate-200">
+                w-full h-full
+                bg-slate-200">
 
     @if ($errors->any())
-        <h1>{{ $errors->first() }}</h1>
+    <h1 class="self-center mt-7 p-4 bg-red-300 text-red-700">
+        {{ $errors->first() }}
+    </h1>
     @endif
 
     @if (session('success'))
-        <h1>{{ session('success') }}</h1>
+    <h1 class="self-center mt-7 p-4  bg-green-300 text-green-700">
+        {{ session('success') }}
+    </h1>
     @endif
 
     <div class="flex flex-row w-full
-            justify-around
-            mt-10">
+        justify-around
+        mt-5">
 
         {{-- Formulaire d'import des utilisateurs depuis un CSV --}}
         {{-- Bouton d'import du csv --}}
         <label for="button_import_csv" class="flex justify-center items-center
-                    h-16
-                    px-10
-                    mb-4
-                    rounded-lg
-                    text-2xl font-semibold text-white
-                    bg-green-600 hover:bg-green-500
-                    shadow-md shadow-zinc-400
-                    transition-all">Importer par csv</label>
+            h-16
+            px-10
+            mb-4
+            rounded-lg
+            text-2xl font-semibold text-white
+            bg-green-600 hover:bg-green-500
+            shadow-md shadow-zinc-400
+            transition-all">Importer par csv</label>
         <input type="button" class="hidden" id="button_import_csv" data-bs-toggle="modal"
             data-bs-target="#modal_creation_depuis_csv" />
 
@@ -66,17 +70,18 @@ Administration | Gestion Utilisateur
 
                         {{-- Champs --}}
                         <div class="w-full h-full
-                            p-4">
+                                    p-4">
                             <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
+                                        w-full justify-between items-center
+                                        mb-2">
                                 <label class="w-1/2 text-center" for="exampleInputFile">Fichier CSV : </label>
                                 <input name="url" type="file" id="exampleInputFile">
                             </div>
                         </div>
 
                         {{-- Annulation et Confirmation --}}
-                        <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                        <div
+                            class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
 
                             {{-- Annulation --}}
                             <button type="button"
@@ -87,8 +92,8 @@ Administration | Gestion Utilisateur
 
                             {{-- Confirmation --}}
                             <button type="submit"
-                                class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                                >Je valide</button>
+                                class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Je
+                                valide</button>
                         </div>
                     </form>
 
@@ -103,15 +108,15 @@ Administration | Gestion Utilisateur
                 text-2xl font-semibold text-white
                 bg-blue-600 hover:bg-blue-500
                 shadow-md shadow-zinc-400
-                transition-all" data-bs-toggle="modal" data-bs-target="#">
+                transition-all" data-bs-toggle="modal" data-bs-target="#modal_creation">
             Création
         </button>
     </div>
 
     {{-- Liste des utilisateurs --}}
     <div class="w-fit h-fit
-            p-4 self-center
-            bg-slate-200">
+                p-4 self-center
+                bg-slate-200">
         <table class="min-w-full overflow-auto">
             <thead class="border-b">
                 <tr>
@@ -168,7 +173,7 @@ Administration | Gestion Utilisateur
                                     bg-gray-300 hover:bg-red-600
                                     rounded-lg
                                     font-semibold hover:text-white
-                                    transition-all" data-bs-toggle="modal" data-bs-target="#modal_suppresion">
+                                    transition-all" data-bs-toggle="modal" data-bs-target="#modal_suppresion_{{ $utilisateur->id }}">
                             X
                         </button>
                     </td>
@@ -176,7 +181,7 @@ Administration | Gestion Utilisateur
 
                 <!-- Modal de Suppresion -->
                 <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-                    id="modal_suppresion" tabindex="-1" aria-hidden="true">
+                    id="modal_suppresion_{{ $utilisateur->id }}" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog relative w-auto pointer-events-none">
                         <div
                             class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
@@ -211,7 +216,7 @@ Administration | Gestion Utilisateur
                                 <form action="{{ route('suppression-user', $utilisateur->id) }}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <input type="submit"
+                                    <input type="submit" name="{{ $utilisateur->id }}"
                                         class="px-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                                         value="Je confirme" />
                                 </form>
@@ -242,17 +247,17 @@ Administration | Gestion Utilisateur
                 @if ($i == $utilisateurs->currentPage())
                 <li>
                     <a href="{{ $utilisateurs->url($i)}}" class="py-2 px-3
-                                leading-tight
-                                text-white hover:text-gray-700
-                                bg-gray-300 border border-gray-300 hover:bg-gray-100">
+                leading-tight
+                text-white hover:text-gray-700
+                bg-gray-300 border border-gray-300 hover:bg-gray-100">
                         {{$i}}
                     </a>
                 </li>
                 @elseif ($utilisateurs->currentPage() >= $i-3 and $utilisateurs->currentPage() <= $i+3) <li>
                     <a href="{{ $utilisateurs->url($i)}}" class="py-2 px-3
-                                leading-tight
-                                text-gray-500 hover:text-gray-700
-                                bg-white border border-gray-300 hover:bg-gray-100">
+                leading-tight
+                text-gray-500 hover:text-gray-700
+                bg-white border border-gray-300 hover:bg-gray-100">
                         {{$i}}
                     </a>
                     </li>
@@ -293,24 +298,24 @@ Administration | Gestion Utilisateur
                     @csrf
                     {{-- Champs --}}
                     <div class="w-full h-full
-                            p-4">
+                                p-4">
                         <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
+                                    w-full justify-between items-center
+                                    mb-2">
                             <label class="w-1/2 text-center">Nom : </label>
                             <input name="name" type="text" class="w-1/2
-                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                                rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
                         <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
+                                    w-full justify-between items-center
+                                    mb-2">
                             <label class="w-1/2 text-center">Mail : </label>
                             <input name="email" type="text" class="w-1/2
-                                        rounded-lg focus:ring-1 focus:ring-zinc-800">
+                                    rounded-lg focus:ring-1 focus:ring-zinc-800">
                         </div>
                         <div class="flex flex-col md:flex-row
-                                w-full justify-between items-center
-                                mb-2">
+                                    w-full justify-between items-center
+                                    mb-2">
                             <label class="w-1/2 text-center">Mot de passe : </label>
 
                             <div class="flex flex-row
@@ -321,14 +326,24 @@ Administration | Gestion Utilisateur
                                     id="champ_mdp">
 
                                 <label class="flex items-center
-                                        w-10 p-2
-                                        rounded-r-lg font-semibold text-white
-                                        bg-green-600 hover:bg-green-500
-                                        shadow-md shadow-zinc-400
-                                        transition-all" id="button_genere_mdp">
+                                    w-10 p-2
+                                    rounded-r-lg font-semibold text-white
+                                    bg-green-600 hover:bg-green-500
+                                    shadow-md shadow-zinc-400
+                                    transition-all" id="button_genere_mdp">
                                     <ion-icon name="key-sharp" class="text-white text-lg" />
                                 </label>
                             </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row
+                                w-full justify-between items-center
+                                mb-2">
+                            <label class="w-1/2 text-center">Promotion : </label>
+                            <select name="type">
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}">{{ $type->libelle }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                     </div>
@@ -361,6 +376,7 @@ Administration | Gestion Utilisateur
             </div>
         </div>
     </div>
+
 </section>
 
 @endsection

@@ -16,7 +16,7 @@ class EvenementController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $evenements = Evenement::paginate(10);
+        $evenements = Evenement::paginate(7);
         $evnmt = Evenement::all()->where('est_cloturer', '0')->first();
         return view('espace_admin.gestion_evenement', compact(['evenements', 'evnmt']));
     }
@@ -110,8 +110,10 @@ class EvenementController extends Controller
      */
     public function destroy($id)
     {
-        Evenement::destroy($id);
-        return redirect()->route('evenements');
+        $evenement = Evenement::find($id);
+        $evenement->est_cloturer = 1;
+        $evenement->save();
+        return redirect()->back()->with('success', 'Evenement cloturé avec succes');
 
     }
 

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Imports\UsersImport;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -18,7 +19,7 @@ class UserController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $types = Type::where('libelle', '<>', "ADMIN");
+        $types = Type::where('libelle', '<>', "ADMIN")->get();
         $utilisateurs = User::paginate(7);
         return view('espace_admin.gestion_utilisateur', compact(['utilisateurs', 'types']));
     }
@@ -54,10 +55,8 @@ class UserController extends Controller
                 return redirect()->back()->withErrors("Pas la bonne extension");
             }
 
-
-
             Excel::import(new UsersImport, request()->file('url'));
-            return redirect()->back()->with('success','Data Imported Successfully');
+            return redirect()->back()->with('success','Utilisateurs importés avec Succès');
         }
         return redirect()->back()->withErrors("Pas de fichier sélectionné");
     }
@@ -80,13 +79,18 @@ class UserController extends Controller
      * @param  \App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request)
+    public function store(Request $request)
     {
         $user = new User();
-
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->promotion_id = $request->get('type');
+        $user->admin = 0;
+        $user->premiere_connexion = 0;
 
         $user->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Utilisateur créé avec succès');
     }
     /**
      * Display the specified resource.
