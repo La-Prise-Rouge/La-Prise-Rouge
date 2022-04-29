@@ -182,8 +182,8 @@ Route::delete('suppression-evenement/{id}',
     [EvenementController::class,'destroy']
     )->name('suppression-evenement');
 Route::post('creation-evenement',
-    [EvenementController::class,'create']
+    [EvenementController::class,'store']
     )->name('creation-evenement');
-Route::post('modification-evenement',   ///{id}
+Route::post('modification-evenement/{id}',   ///{id}
     [EvenementController::class,'update']
     )->name('modification-evenement');
