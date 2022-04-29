@@ -167,7 +167,7 @@ Route::delete('suppression-user/{id}',
     [UserController::class,'destroy']
     )->name('suppression-user');
 Route::post('creation-user',
-    [UserController::class,'create']
+    [UserController::class,'store']
     )->name('creation-user');
 Route::post('create_depuis_csv',
     [UserController::class,'create_depuis_csv']
@@ -187,3 +187,6 @@ Route::post('creation-evenement',
 Route::post('modification-evenement',   ///{id}
     [EvenementController::class,'update']
     )->name('modification-evenement');
+Route::post('cloture-evenement/{id}',   ///{id}
+    [EvenementController::class, 'destroy']
+    )->name('cloture-evenement');

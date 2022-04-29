@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Imports\UsersImport;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -78,13 +79,18 @@ class UserController extends Controller
      * @param  \App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request)
+    public function store(Request $request)
     {
         $user = new User();
-
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->promotion_id = $request->get('type');
+        $user->admin = 0;
+        $user->premiere_connexion = 0;
 
         $user->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Utilisateur créé avec succès');
     }
     /**
      * Display the specified resource.
