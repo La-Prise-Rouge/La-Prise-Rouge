@@ -155,6 +155,9 @@ Administration | Gestion Évenements
                         data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
+                @if ($evnmt != null)
+
+
                 <form action="{{ route('modification-evenement', $evnmt->id) }}" method="POST">
                     @csrf
                     {{-- Champs --}}
@@ -242,7 +245,17 @@ Administration | Gestion Évenements
                             value="Je confirme" />
                     </div>
                 </form>
-
+                @else
+                    <div class="p-6">
+                        <h2 class="text-red-600 text-xl text-center font-extrabold mb-6">Aucun Évenement en cours
+                        </h2>
+                        <p class="text-center text-lg font-semibold">
+                            Impossible de modifier un évenenement.
+                            <br>
+                            Merci de créer un évenement.
+                        </p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
