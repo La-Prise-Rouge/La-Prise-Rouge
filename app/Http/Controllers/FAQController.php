@@ -19,6 +19,12 @@ class FAQController extends Controller
         return view('faqs')->with('faqs', $faqs);
     }
 
+    public function index_admin()
+    {
+        $faqs = FAQ::paginate(7);
+        return view('espace_admin.gestion_faq')->with('faqs', $faqs);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

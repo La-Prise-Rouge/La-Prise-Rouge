@@ -68,7 +68,7 @@
                 <ion-icon name="accessibility" class="text-2xl"></ion-icon>
                 <p class="text-xl ml-2 hover:scale-105 link link-underline txt_button">Partenaires</p>
             </a>
-            <a href="" class="flex flex-row
+            <a href="{{ route('gestion_faq') }}" class="flex flex-row
                 my-10">
                 <ion-icon name="help-circle" class="text-2xl"></ion-icon>
                 <p class="text-xl ml-2 hover:scale-105 link link-underline txt_button">FAQs</p>

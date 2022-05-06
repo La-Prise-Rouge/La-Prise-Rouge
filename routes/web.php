@@ -75,11 +75,6 @@ Route::get('creation-evenement',
     [EvenementController::class,'create']
     )->name('creation-evenement');   //->middleware('auth')->middleware('IsAdmin')
 
-//Route vers le formulaire d'ajout d'une FAQ
-Route::get('creation-faq',
-    [FAQController::class,'create']
-    )->name('creation-faq');   //->middleware('auth')->middleware('IsAdmin')
-
 //Route du formulaire d'ajout d'evenement validé
 Route::post('validation-creation-evenement',
     [EvenementController::class,'store']
@@ -161,6 +156,7 @@ Route::delete('suppression-photo/{id}',
 Route::get('/espace_admin/dashboard', [UserController::class, 'show_admin'])->name('dashboard');
 Route::get('/espace_admin/gestion_utilisateur', [UserController::class, 'index'])->name('gestion_utilisateur');
 Route::get('/espace_admin/gestion_evenement', [EvenementController::class, 'index'])->name('gestion_evenement');
+Route::get('/espace_admin/gestion_faq', [FAQController::class, 'index_admin'])->name('gestion_faq');
 
 // Routes User
 Route::delete('suppression-user/{id}',
@@ -190,3 +186,8 @@ Route::post('modification-evenement/{id}',   ///{id}
 Route::post('cloture-evenement/{id}',   ///{id}
     [EvenementController::class, 'destroy']
     )->name('cloture-evenement');
+
+    //Route vers le formulaire d'ajout d'une FAQ
+Route::post('creation-faq',
+    [FAQController::class,'create']
+    )->name('creation-faq');   //->middleware('auth')->middleware('IsAdmin')
