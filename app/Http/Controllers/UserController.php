@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Type;
 use Illuminate\Http\Request;
+use App\Imports\UsersImport;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -15,8 +19,9 @@ class UserController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $user = User::paginate(10);
-        return view('User')->with('user', $user);
+        $types = Type::where('libelle', '<>', "ADMIN")->get();
+        $utilisateurs = User::paginate(7);
+        return view('espace_admin.gestion_utilisateur', compact(['utilisateurs', 'types']));
     }
 
     /**
@@ -24,9 +29,36 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_depuis_csv(Request $request)
+    {
+        if($request->hasFile('url')) {
+            //get filename with extension
+            $filenamewithextension = $request->file('url')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('url')->getClientOriginalExtension();
+
+            if ($extension != "csv") {
+                return redirect()->back()->withErrors("Pas la bonne extension");
+            }
+
+            Excel::import(new UsersImport, request()->file('url'));
+            return redirect()->back()->with('success','Utilisateurs importés avec Succès');
+        }
+        return redirect()->back()->withErrors("Pas de fichier sélectionné");
     }
 
     /**
@@ -35,12 +67,42 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $id)
+    public function show($id)
     {
         $user = User::find($id);
         return view('user')->with('user', $user);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreUserRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->promotion_id = $request->get('type');
+        $user->admin = 0;
+        $user->premiere_connexion = 0;
+
+        $user->save();
+        return redirect()->back()->with('success','Utilisateur créé avec succès');
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show_admin()
+    {
+        // APPLIQUER LE MIDDLEWARE ADMIN
+        return view('espace_admin.dashboard');
+    }
 
 
     /**
@@ -49,9 +111,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        User::destroy($user);
-        return redirect()->route('Accueil');
+        User::destroy($id);
+        return redirect()->route('gestion_utilisateur');
     }
 }

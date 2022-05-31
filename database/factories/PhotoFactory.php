@@ -16,7 +16,7 @@ class PhotoFactory extends Factory
     {
         return [
             'titre'=> $this->faker->text(20),
-            'url'=> $this->faker->text(50),
+            'url'=> $this->faker->word().".jpg",
             'description'=> $this->faker->text(50),
             'evenement_id'=> Evenement::inRandomOrder()->first()->id
         ];

@@ -28,4 +28,14 @@ class Promotion extends Model
     {
         return $this->belongsToMany(Evenement::class)->withPivot('heure_passage');
     }
+
+    /**
+     * Get the Type that owns the Promotion
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

@@ -18,8 +18,8 @@
     </ul>
 
     {{-- Section: Partenaires --}}
-    <section class="w-full md:w-3/4 self-center
-        mt-8" id="partenaires">
+    <section class="w-full md:w-3/4 self-center mt-8"
+        id="partenaires">
 
         @if ($evenement->Photos->Count() > 0)
         {{-- Carroussel --}}
@@ -41,7 +41,7 @@
                                         justify-center align-middle">
                         <a href="#" class="w-full h-full
                                             flex justify-center">
-                            <img src="{{ asset($photo->url) }}" class="rounded-lg h-24">
+                            <img src="{{ asset($photo->url) }}" class="rounded-lg h-24" alt='test'>
                         </a>
                     </li>
                     @endforeach
@@ -78,7 +78,7 @@
 
     </section>
 
-    {{-- Options du Carrousel --}}
+    {{-- Options du Carrousel de Photos--}}
     <script>
         // Configuration
                 const config = {
@@ -103,11 +103,13 @@
                 new Glide('.glide', config).mount()
     </script>
 
-    <h1 class="p-10
-        bg-red-600
-        text-center text-xl font-bold text-white">
-        INSCRIVEZ-VOUS JUSQU'AU {{ date('d/m/Y', strtotime($evenement->date_fin_inscription)) }}
-    </h1>
+    @if ($evenement->est_cloturer == 0)
+        <h1 class="p-10
+            bg-red-600
+            text-center text-xl font-bold text-white">
+            INSCRIVEZ-VOUS JUSQU'AU {{ date('d/m/Y', strtotime($evenement->date_fin_inscription)) }}
+        </h1>
+    @endif
 
     <p class="mt-10 text-center">Pour participer à cet évènement, les primo-donneurs doivent participer à la réunion se tenant le {{
         date('d/m/Y à h:m', strtotime($evenement->date_reunion_primo)) }}</p>

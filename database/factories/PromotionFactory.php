@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use App\Models\Type;
 
 class PromotionFactory extends Factory
 {
@@ -15,23 +16,11 @@ class PromotionFactory extends Factory
      */
     public function definition()
     {
-        $libelle = [
-            'SIO',
-            'ASI',
-            'FED',
-            'AM',
-            'CGO',
-            'PMI',
-            'SP3S',
-            'NRC',
-            'TC',
-            'CI',
-            'DCG'
-        ];
+        $type = Type::where('libelle', '=', "ADMIN")->first();
         return [
-            'libelle'=> Arr::random($libelle),
-            'annee' => $this->faker-> year(now()),
-            'type'=> rand(1, 2)
+            'annee' => 1970,
+            'type' => 1,
+            'type_id' => $type->id
         ];
     }
 

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evenement;
 use App\Models\Partenaire;
-use App\Http\Requests\StoreEvenementRequest;
-use App\Http\Requests\UpdateEvenementRequest;
+use Illuminate\Http\Request;
 
 class EvenementController extends Controller
 {
@@ -17,8 +16,9 @@ class EvenementController extends Controller
     //Retourne la liste de tous les evenements
     public function index()
     {
-        $evenements = Evenement::paginate(10);
-        return view('Evenements')->with('evenements', $evenements);
+        $evenements = Evenement::paginate(7);
+        $evnmt = Evenement::all()->where('est_cloturer', '0')->first();
+        return view('espace_admin.gestion_evenement', compact(['evenements', 'evnmt']));
     }
 
     /**
@@ -37,7 +37,7 @@ class EvenementController extends Controller
      * @param  \App\Http\Requests\StoreEvenementRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEvenementRequest $request)
+    public function store(Request $request)
     {
         $evenement= new Evenement();
         $evenement->libelle=$request->get('libelle');
@@ -48,9 +48,10 @@ class EvenementController extends Controller
         $evenement->lieu=$request->get('lieu');
         $evenement->date_inscription=$request->get('date_inscription');
         $evenement->date_fin_inscription=$request->get('date_fin_inscription');
+        $evenement->est_cloturer=0;
 
         $evenement->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','l\'évenement est créé');
     }
 
     /**
@@ -84,7 +85,7 @@ class EvenementController extends Controller
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEvenementRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $evenement = Evenement::find($id);
         $evenement->libelle=$request->get('libelle');
@@ -95,9 +96,10 @@ class EvenementController extends Controller
         $evenement->lieu=$request->get('lieu');
         $evenement->date_inscription=$request->get('date_inscription');
         $evenement->date_fin_inscription=$request->get('date_fin_inscription');
+        $evenement->est_cloturer=0;
 
         $evenement->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','l\'évenement est modifié');
     }
 
     /**
@@ -109,8 +111,10 @@ class EvenementController extends Controller
     public function destroy($id)
     {
         $evenement = Evenement::find($id);
-        Evenement::destroy($evenement);
-        return redirect()->back();
+        $evenement->est_cloturer = 1;
+        $evenement->save();
+        return redirect()->back()->with('success', 'Evenement cloturé avec succes');
+
     }
 
     //retour à la page d'accueil
@@ -123,7 +127,7 @@ class EvenementController extends Controller
         }else {
             return view('accueil', compact('evenement', 'partenaires'));
         }
-        
+
     }
 
     //retour à la page des evenements

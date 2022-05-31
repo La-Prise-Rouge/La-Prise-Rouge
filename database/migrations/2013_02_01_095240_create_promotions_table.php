@@ -15,25 +15,13 @@ class CreatePromotionsTable extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->enum('libelle',[
-                'SIO',
-                'ASI',
-                'FED',
-                'AM',
-                'CGO',
-                'PMI',
-                'SP3S',
-                'NRC',
-                'TC',
-                'CI',
-                'DCG'
-            ]);
             $table->string('annee');
             $table->enum('type',[
                 'Alternance',
                 'Continue',
             ]);
             $table->timestamps();
+            $table->foreignId('type_id')->constrained();
         });
     }
 

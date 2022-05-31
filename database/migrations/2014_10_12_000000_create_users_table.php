@@ -24,7 +24,7 @@ return new class extends Migration
             $table->tinyInteger('est_primo')->nullable();
             $table->tinyInteger('admin')->default(0);
             $table->tinyInteger('premiere_connexion')->default(0);
-            $table->foreignId('promotion_id');
+            $table->foreignId('promotion_id')->constrained();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();

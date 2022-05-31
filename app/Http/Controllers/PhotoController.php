@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Image;
+use File;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Photo;
+use App\Models\Evenement;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+
 
 class PhotoController extends Controller
 {
@@ -26,13 +32,14 @@ class PhotoController extends Controller
      */
     public function create()
     {
+        $evenements = Evenement::all();
         //Envoi sur le formulaire de création
-        return view('photo.formAjoutPhoto');
+        return view('photo.formAjoutPhoto', compact('evenements'));
     }
 
     /**
      * Store a newly created resource in storage.
-     *
+     *profile_image
      * @param  \App\Http\Requests\StorePhotoRequest  $request
      * @return \Illuminate\Http\Response
      */
@@ -40,12 +47,35 @@ class PhotoController extends Controller
     {
         $photo= new Photo();
         $photo->titre=$request->get('titre');
-        $photo->url=$request->get('url');
-        $photo->description=$request->get('description');
-        $photo->evenement_id=$request->get('evenement_id');
+        if($request->hasFile('url')) {
+            //get filename with extension
+            $filenamewithextension = $request->file('url')->getClientOriginalName();
 
-        $photo->save();
-        return redirect()->back();
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('url')->getClientOriginalExtension();
+
+            //filename to store
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+
+
+            //Upload File
+            $request->file('url')->storeAs('public/profile_images', $filenametostore);
+            $request->file('url')->storeAs('public/profile_images/thumbnail', $filenametostore);
+
+            //create small thumbnail
+            $smallthumbnailpath = public_path('storage/profile_images/thumbnail/'.$filenametostore);
+            $this->createThumbnail($smallthumbnailpath, 150, 93);
+
+            $photo->url=$filenametostore;
+            $photo->description=$request->get('description');
+            $photo->evenement_id=$request->get('evenement');
+            $photo->save();
+
+            return redirect('creation-photo')->with('success', "Image uploaded successfully.");
+        }
     }
 
     /**
@@ -67,7 +97,7 @@ class PhotoController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Photo $photo)
+    public function edit(Photo $id)
     {
         //
     }
@@ -81,9 +111,7 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $id)
     {
-        $photo = Photo::find($id);
-        //envoi sur le formulaire Update de photo
-        return view('photo.formUpdPhoto')->with('photo', $photo);
+        //
     }
 
     /**
@@ -92,9 +120,41 @@ class PhotoController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy($id)
     {
-        Photo::destroy($photo);
-        return redirect()->route('Accueil');
+        $photo = Photo::find($id);
+        $file = storage_path('app/public/profile_images/'.$photo->url);
+        $sfile = storage_path('app/public/profile_images/thumbnail/'.$photo->url);
+        unlink($file);
+        unlink($sfile);
+        Photo::destroy($id);
+        return redirect()->route('photos');
+    }
+
+    /**
+     * Create a thumbnail of specified size
+     *
+     * @param string $path path of thumbnail
+     * @param int $width
+     * @param int $height
+     */
+    public function createThumbnail($path, $width, $height)
+    {
+        $img = Image::make($path)->resize($width, $height)->save($path);
+    }
+
+    //retour à la page des photos
+    public function retournePhotos()
+    {
+        $photos = Photo::all();
+        $photos = Photo::paginate(10);
+        return view('photos', compact('photos'));
+    }
+
+    //retour à la page de la photo
+    public function retournePhoto($id)
+    {
+        $photo = Photo::find($id);
+        return view('photo', compact('photo'));
     }
 }

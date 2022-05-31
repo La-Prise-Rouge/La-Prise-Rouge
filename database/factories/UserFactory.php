@@ -26,12 +26,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'name' => "PERNELLE",
+            'email' => "spernelle@groupemontroland.fr",
             'email_verified_at' => now(),
+            'admin' => 1,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'promotion_id'=> Promotion::inRandomOrder()->first()->id
+            'promotion_id'=> Promotion::first()->id,
         ];
     }
 

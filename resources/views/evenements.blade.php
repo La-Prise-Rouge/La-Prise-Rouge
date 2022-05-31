@@ -6,7 +6,6 @@
     flex flex-col
     w-full h-fit">
 
-
     {{-- Paginator --}}
     <div class="flex flex-row justify-between w-11/12 h-8 ">
 
@@ -51,7 +50,7 @@
                 rounded-2xl shadow-xl
                 shadow-zinc-500"
                 style="background-image: url('{{ asset($evenement->Photos->first()) }}')">
-                <h2>{{ $evenement->libelle }}</h2>
+                <a href="{{ route('Evenement', $evenement->id) }}">{{ $evenement->libelle }}</a>
                 <div class="absolute
                     flex flex-row
                     h-16 bottom-0 right-16">

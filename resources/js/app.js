@@ -1,3 +1,5 @@
+const { forEach } = require("lodash");
+
 document.addEventListener('DOMContentLoaded', (event) => {
 
     // Affichage du menu Utilisateur
@@ -8,8 +10,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Fonction d'évenement au click
         $buttonUser.addEventListener('click', () => {
             $formUser.classList.toggle('hidden');
-        })   
-    } 
+        })
+    }
 
     // Affichage du menu Navigation
     var $button_navigation = document.getElementById('boutton_nav');
@@ -29,5 +31,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
             $fermer_nav.style.display = 'none';
             $ouvrir_nav.style.display = 'flex';
         }
+    })
+
+    var $button_menu = document.getElementById('button_menu');
+    $button_menu.addEventListener('click', () => {
+        var $txt_button = document.getElementsByClassName('txt_button');
+
+        for (let button of $txt_button) {
+            button.classList.toggle('hidden');
+        }
+    })
+
+    // Récupération des composants graphique pour la génération de mdp
+    var $button_genere_mdp = document.getElementById('button_genere_mdp');
+    var $champ_mdp = document.getElementById('champ_mdp');
+
+    // Fonction d'évenement au client du bouton de gen
+    $button_genere_mdp.addEventListener('click', async () => {
+        // Call à l'API
+        const responseHTTP = await fetch('https://api.motdepasse.xyz/create/?include_digits&include_lowercase&password_length=32&quantity=1');
+        // Récupéraiton du JSON de la reponse de l'API
+        const reponseJSON = await responseHTTP.json();
+
+        $champ_mdp.value = reponseJSON.passwords[0];
     })
 })
