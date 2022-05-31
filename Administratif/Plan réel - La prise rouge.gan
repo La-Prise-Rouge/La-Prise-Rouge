@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Plan de gestion Réel - La Prise Rouge" company="" webLink="http://" view-date="2022-01-31" view-index="0" gantt-divider-location="784" resource-divider-location="300" version="3.1.3103" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Plan de gestion Réel - La Prise Rouge" company="" webLink="http://" view-date="2022-01-03" view-index="0" gantt-divider-location="339" resource-divider-location="300" version="3.1.3103" locale="fr_FR">
     <description/>
-    <view zooming-state="default:5" id="gantt-chart">
-        <field id="tpd10" name="ID" width="39" order="0"/>
-        <field id="tpd3" name="Nom" width="264" order="1"/>
-        <field id="tpd4" name="Date de début" width="68" order="2"/>
-        <field id="tpd5" name="Date de fin" width="72" order="3"/>
-        <field id="tpd6" name="Durée" width="59" order="4"/>
-        <field id="tpd9" name="Prédécesseurs" width="79" order="5"/>
-        <field id="tpd13" name="Ressources" width="199" order="6"/>
+    <view zooming-state="default:6" id="gantt-chart">
+        <field id="tpd10" name="ID" width="23" order="0"/>
+        <field id="tpd3" name="Nom" width="100" order="1"/>
+        <field id="tpd4" name="Date de début" width="33" order="2"/>
+        <field id="tpd5" name="Date de fin" width="34" order="3"/>
+        <field id="tpd6" name="Durée" width="30" order="4"/>
+        <field id="tpd9" name="Prédécesseurs" width="37" order="5"/>
+        <field id="tpd13" name="Ressources" width="78" order="6"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="210" order="0"/>
@@ -37,7 +37,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Etude préalable" color="#8cb6ce" meeting="false" start="2022-01-07" duration="3" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="false">
+        <task id="0" name="Etude préalable" color="#8cb6ce" meeting="false" start="2022-01-07" duration="3" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="true">
             <depend id="8" type="2" difference="0" hardness="Strong"/>
             <task id="9" name="Recueil du besoin" meeting="false" start="2022-01-07" duration="1" complete="0" expand="true"/>
             <task id="11" name="Mise en place des outils" color="#8cb6ce" meeting="false" start="2022-01-07" duration="1" complete="0" thirdDate="2022-01-13" thirdDate-constraint="0" expand="true">
@@ -48,7 +48,7 @@
             <task id="10" name="Recherches Technologique" color="#8cb6ce" meeting="false" start="2022-01-14" duration="1" complete="0" thirdDate="2022-01-13" thirdDate-constraint="0" expand="true"/>
             <task id="104" name="Création du projet Laravel" meeting="false" start="2022-01-14" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="8" name="Conception BDD" color="#8cb6ce" meeting="false" start="2022-02-04" duration="2" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="false">
+        <task id="8" name="Conception BDD" color="#8cb6ce" meeting="false" start="2022-02-04" duration="2" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="true">
             <depend id="27" type="2" difference="0" hardness="Strong"/>
             <depend id="38" type="2" difference="0" hardness="Strong"/>
             <depend id="47" type="2" difference="0" hardness="Strong"/>
@@ -59,14 +59,14 @@
             <task id="23" name="Ecriture des Seeding" meeting="false" start="2022-02-04" duration="1" complete="0" expand="true"/>
             <task id="25" name="Test de migration" meeting="false" start="2022-02-10" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="27" name="Front-End" color="#8cb6ce" meeting="false" start="2022-02-11" duration="9" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="false">
+        <task id="27" name="Front-End" color="#8cb6ce" meeting="false" start="2022-02-11" duration="9" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="true">
             <task id="29" name="Installation de Tailwind CSS" meeting="false" start="2022-02-11" duration="1" complete="0" expand="true"/>
             <task id="30" name="Ecriture de la page d'Accueil" color="#8cb6ce" meeting="false" start="2022-02-11" duration="9" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="false">
                 <task id="35" name="Responsive" meeting="false" start="2022-02-11" duration="9" complete="0" expand="true"/>
                 <task id="36" name="Stylisation" meeting="false" start="2022-02-11" duration="9" complete="0" expand="true"/>
             </task>
         </task>
-        <task id="38" name="Authentification" color="#8cb6ce" meeting="false" start="2022-02-11" duration="1" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="false">
+        <task id="38" name="Authentification" color="#8cb6ce" meeting="false" start="2022-02-11" duration="1" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="true">
             <task id="40" name="Installation de Jestream/LiveWire" meeting="false" start="2022-02-11" duration="1" complete="0" expand="true"/>
             <task id="41" name="Retouche graphique de la page de connexion" color="#8cb6ce" meeting="false" start="2022-02-11" duration="1" complete="0" thirdDate="2022-03-10" thirdDate-constraint="0" expand="false">
                 <task id="44" name="Affichage par JS" meeting="false" start="2022-02-11" duration="1" complete="0" expand="true"/>

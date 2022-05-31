@@ -17,6 +17,7 @@ class CreateFAQSTable extends Migration
             $table->id();
             $table->string('question');
             $table->string('reponse');
+            $table->string('type');
             $table->timestamps();
         });
     }
